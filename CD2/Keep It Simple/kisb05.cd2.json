@@ -1,0 +1,1644 @@
+{
+  "Name": "Keep It Simple B05",
+  "Description": "Welcome to most powerful weapons；a non-diversity difficulty that emphasizes fast pacing without bunker play. Beta 05: Code optimization, reduced Bulk movement speed, reduced large enemy health, added WaveSpawner delay for specific mission types, adjusted recovery condition logic, and adjusted Rarities. 
+歡迎使用大多數強力武器；非多樣性難度，主打不築碉堡、快速推進的節奏。 Beta 05：優化代碼、削巨爆移速、削大怪血量、新增自訂潮在特定任務類型的延遲、修改殘局能力增強的判定、調整怪物生成稀有度。",
+  "Caps": {
+    "MaxActiveSwarmers": [
+      90,
+      120,
+      150,
+      180
+    ],
+    "MaxActiveEnemies": [
+      120,
+      160,
+      200,
+      240
+    ]
+  },
+  "Warnings": {
+    "Banned": [
+      "WRN_Ghost"
+    ]
+  },
+  "Resupply": {
+    "Cost": {
+      "Mutate": "IfFloat",
+      "Value": {
+        "Mutate": "ResuppliesCalled"
+      },
+      "==": 0,
+      "Then": 40,
+      "Else": 50
+    }
+  },
+  "Pools": {
+    "MinPoolSize": 18,
+    "DisruptiveEnemyPoolCount": {
+      "Min": 8,
+      "Max": 8
+    },
+    "StationaryEnemyCount": {
+      "Min": 6,
+      "Max": 6
+    },
+    "DisruptiveEnemies": {
+      "Remove": {
+        "Mutate": "IfFloat",
+        "Value": {
+          "Mutate": "DwarfCount"
+        },
+        "<": 3,
+        "Then": [
+          "ED_Spider_Stalker"
+        ],
+        "Else": []
+      }
+    },
+    "EnemyPool": {
+      "Remove": {
+        "Mutate": "IfFloat",
+        "Value": {
+          "Mutate": "DwarfCount"
+        },
+        "<": 3,
+        "Then": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "DuringDefend"
+          },
+          "Then": [
+            "ED_Spider_ExploderTank",
+            "ED_Spider_Stalker"
+          ],
+          "Else": {
+            "Mutate": "If",
+            "Condition": {
+              "Mutate": "DuringDrillevator"
+            },
+            "Then": [
+              "ED_Spider_ExploderTank",
+              "ED_Spider_Stalker",
+              "ED_Woodlouse"
+            ],
+            "Else": [
+              "ED_Spider_Stalker"
+            ]
+          }
+        },
+        "Else": []
+      }
+    }
+  },
+  "SpecialEncounters": [],
+  "DifficultySetting": {
+    "BaseHazard": "Hazard 5",
+    "ExtraLargeEnemyDamageResistance": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          1,
+          {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          },
+          2
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      }
+    },
+    "ExtraLargeEnemyDamageResistanceB": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          1,
+          {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          },
+          2
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      }
+    },
+    "ExtraLargeEnemyDamageResistanceC": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          1,
+          {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          },
+          2
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      }
+    },
+    "ExtraLargeEnemyDamageResistanceD": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          {
+            "Mutate": "Divide",
+            "A": 7,
+            "B": 6
+          },
+          {
+            "Mutate": "Divide",
+            "A": 49,
+            "B": 36
+          },
+          {
+            "Mutate": "Divide",
+            "A": 14,
+            "B": 9
+          },
+          1.75
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      }
+    },
+    "EnemyDamageResistance": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          {
+            "Mutate": "Divide",
+            "A": 7,
+            "B": 6
+          },
+          {
+            "Mutate": "Divide",
+            "A": 49,
+            "B": 36
+          },
+          {
+            "Mutate": "Divide",
+            "A": 14,
+            "B": 9
+          },
+          1.75
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      }
+    },
+    "EnemyDamageModifier": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          3.5,
+          4,
+          4.5,
+          5
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      }
+    },
+    "EnemyCountModifier": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          1.75,
+          {
+            "Mutate": "Divide",
+            "A": 7,
+            "B": 3
+          },
+          {
+            "Mutate": "Divide",
+            "A": 35,
+            "B": 12
+          },
+          3.5
+        ]
+      },
+      "B": {
+        "Mutate": "Subtract",
+        "A": 1,
+        "B": {
+          "Mutate": "Multiply",
+          "A": 0.1,
+          "B": {
+            "Mutate": "DwarvesDown"
+          }
+        }
+      },
+      "C": {
+        "Mutate": "ByMissionType",
+        "Default": 1,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "DuringEncounters"
+          },
+          "Then": 1,
+          "Else": 1.5
+        }
+      }
+    },
+    "EncounterDifficulty": {
+      "Mutate": "Divide",
+      "A": 2000,
+      "B": 3.5
+    },
+    "StationaryDifficulty": 500,
+    "EnemyWaveInterval": {
+      "Mutate": "Add",
+      "A": 146.300003,
+      "B": {
+        "Mutate": "Multiply",
+        "A": -10,
+        "B": {
+          "Mutate": "DwarfCount"
+        },
+        "C": {
+          "Mutate": "DwarvesHealth"
+        }
+      }
+    },
+    "EnemyNormalWaveInterval": 99999,
+    "EnemyNormalWaveDifficulty": 0,
+    "EnemyDiversity": {
+      "Mutate": "ByMissionType",
+      "Default": 15,
+      "Mining": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "Or",
+          "A": {
+            "Mutate": "DuringDefend"
+          },
+          "C": {
+            "Mutate": "DuringEggAmbush",
+            "StartingAt": 4,
+            "StoppingAfter": 10
+          },
+          "F": {
+            "Mutate": "DuringExtraction"
+          },
+          "G": {
+            "Mutate": "DuringGenericSwarm"
+          }
+        },
+        "Then": 10,
+        "Else": 15
+      },
+      "Egg": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "Or",
+          "A": {
+            "Mutate": "DuringDefend"
+          },
+          "C": {
+            "Mutate": "DuringEggAmbush",
+            "StartingAt": 4,
+            "StoppingAfter": 10
+          },
+          "F": {
+            "Mutate": "DuringExtraction"
+          },
+          "G": {
+            "Mutate": "DuringGenericSwarm"
+          }
+        },
+        "Then": 10,
+        "Else": 15
+      },
+      "Refinery": {
+        "Mutate": "ByRefineryPhase",
+        "Default": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "G": {
+              "Mutate": "DuringGenericSwarm"
+            }
+          },
+          "Then": 10,
+          "Else": 15
+        },
+        "Refining": 10,
+        "RefiningStalled": 10,
+        "RefiningComplete": 10,
+        "RocketLaunched": 10
+      },
+      "Salvage": {
+        "Mutate": "BySalvagePhase",
+        "Default": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "DuringEggAmbush",
+            "StartingAt": 4,
+            "StoppingAfter": 10
+          },
+          "Then": 10,
+          "Else": 15
+        },
+        "Uplink": 10,
+        "Refuel": 10,
+        "Finished": 10
+      },
+      "PE": 10,
+      "DeepScan": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "Or",
+          "A": {
+            "Mutate": "DuringDefend"
+          },
+          "C": {
+            "Mutate": "DuringEggAmbush",
+            "StartingAt": 4,
+            "StoppingAfter": 10
+          },
+          "E": {
+            "Mutate": "DuringDrillevator"
+          },
+          "F": {
+            "Mutate": "DuringExtraction"
+          },
+          "G": {
+            "Mutate": "DuringGenericSwarm"
+          }
+        },
+        "Then": 10,
+        "Else": 15
+      },
+      "Escort": {
+        "Mutate": "ByEscortPhase",
+        "Default": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            }
+          },
+          "Then": 10,
+          "Else": 15
+        },
+        "Moving": 10,
+        "WaitingForFuel": 10,
+        "FinalEventA": 10,
+        "FinalEventB": 10,
+        "FinalEventC": 10,
+        "FinalEventD": 10
+      },
+      "Elimination": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "Or",
+          "A": {
+            "Mutate": "DuringDefend"
+          },
+          "C": {
+            "Mutate": "DuringEggAmbush",
+            "StartingAt": 4,
+            "StoppingAfter": 10
+          },
+          "F": {
+            "Mutate": "DuringExtraction"
+          }
+        },
+        "Then": 10,
+        "Else": 15
+      },
+      "Sabotage": {
+        "Mutate": "BySaboPhase",
+        "Default": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            }
+          },
+          "Then": 10,
+          "Else": 15
+        },
+        "Hacking": 10
+      }
+    },
+    "StationaryEnemyDiversity": 6,
+    "VeteranNormal": {
+      "Mutate": "Divide",
+      "A": 2,
+      "B": 3
+    },
+    "VeteranLarge": 0.25,
+    "EnvironmentalDamageModifier": 1.5,
+    "PointExtractionScalar": 1,
+    "FriendlyFireModifier": 0.9,
+    "SpeedModifier": 1.45,
+    "AttackCooldownModifier": 2.5,
+    "ProjectileSpeedModifier": 2.4,
+    "HealthRegenerationMax": 0.25,
+    "ReviveHealthRatio": 0.25
+  },
+  "Dwarves": {
+    "RegenHealthPerSecond": 5,
+    "RegenDelayAfterDamage": 4.5,
+    "Test": true
+  },
+  "EnemiesNoSync": {
+    "ED_BarrageInfector": {
+      "Resistances": {
+        "DamageMultiplier": 1.5
+      }
+    },
+    "ED_Bomber": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8,
+      "Temperature": {
+        "FreezeTemperature": -200
+      }
+    },
+    "ED_CaveLeech": {},
+    "ED_Grabber": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8
+    },
+    "ED_Jelly_Swarmer": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "MinSpawnCount": 1,
+      "Rarity": 5,
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_JellyBreeder": {
+      "MaxSpawnCount": 9999,
+      "Resistances": {
+        "DamageMultiplier": 1.875
+      },
+      "SpawnAmountModifier": {
+        "Mutate": "Divide",
+        "A": 1,
+        "B": 3
+      }
+    },
+    "ED_Mactera_Shooter_Normal": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "Rarity": 5
+    },
+    "ED_Mactera_TripleShooter": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "Rarity": 5
+    },
+    "ED_PatrolBot": {
+      "MaxSpawnCount": 9999
+    },
+    "ED_Prospector": {
+      "Base": "ED_Spider_Grunt",
+      "CanBeUsedForConstantPressure": false,
+      "CanBeUsedInEncounters": false,
+      "DifficultyRating": 1,
+      "MaxSpawnCount": 0,
+      "MinSpawnCount": 0,
+      "Rarity": 99
+    },
+    "ED_Shark": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8
+    },
+    "ED_ShootingPlant": {},
+    "ED_Shredder": {
+      "MaxSpawnCount": 9999,
+      "MinSpawnCount": 1
+    },
+    "ED_Spider_Buffer": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8
+    },
+    "ED_Spider_Exploder": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "Rarity": 5
+    },
+    "ED_Spider_ExploderTank": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": false,
+      "MaxSpawnCount": 9999,
+      "Movement": {
+        "AlignDirectionSpeed": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "B": {
+              "Mutate": "DuringDrillevator"
+            }
+          },
+          "Then": {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          "Else": {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          }
+        },
+        "MaxAcceleration": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "B": {
+              "Mutate": "DuringDrillevator"
+            }
+          },
+          "Then": {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          "Else": {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          }
+        },
+        "MaxBrakingDeceleration": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "B": {
+              "Mutate": "DuringDrillevator"
+            }
+          },
+          "Then": {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          "Else": {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          }
+        },
+        "MaxPawnSpeed": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "B": {
+              "Mutate": "DuringDrillevator"
+            }
+          },
+          "Then": {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          "Else": {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          }
+        },
+        "MaxStrafeDistance": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "B": {
+              "Mutate": "DuringDrillevator"
+            }
+          },
+          "Then": {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          "Else": {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          }
+        },
+        "StrafeSpeed": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "B": {
+              "Mutate": "DuringDrillevator"
+            }
+          },
+          "Then": {
+            "Mutate": "Divide",
+            "A": 4,
+            "B": 3
+          },
+          "Else": {
+            "Mutate": "Divide",
+            "A": 5,
+            "B": 3
+          }
+        }
+      },
+      "Rarity": 10,
+      "Resistances": {
+        "DamageMultiplier": {
+          "Mutate": "ByPlayerCount",
+          "Values": [
+            4.5,
+            4,
+            3.5,
+            3
+          ]
+        }
+      },
+      "SpawnSpread": 10000
+    },
+    "ED_Spider_Grunt": {
+      "CanBeUsedForConstantPressure": true,
+      "CanBeUsedInEncounters": true,
+      "Rarity": 1
+    },
+    "ED_Spider_Lobber": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 5
+    },
+    "ED_Spider_RapidShooter": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8
+    },
+    "ED_Spider_Shooter": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "Rarity": 5
+    },
+    "ED_Spider_Spitter": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "Rarity": 5
+    },
+    "ED_Spider_Stalker": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8
+    },
+    "ED_Spider_Stinger": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 8
+    },
+    "ED_Spider_Swarmer": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MinSpawnCount": 1,
+      "Rarity": 5
+    },
+    "ED_Spider_Tank": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": 1
+    },
+    "ED_Spider_Tank_HeavySpawn": {
+      "SpawnSpread": 500
+    },
+    "ED_SpiderSpawner": {
+      "MaxSpawnCount": 9999,
+      "Resistances": {
+        "DamageMultiplier": 2.25
+      }
+    },
+    "ED_TentaclePlant": {
+      "MaxSpawnCount": 9999,
+      "Resistances": {
+        "DamageMultiplier": 120
+      },
+      "SpawnAmountModifier": 0.25,
+      "TimeDilation": 0.5
+    },
+    "ED_WalkingPlagueheart": {
+      "Base": "ED_Spider_Grunt",
+      "CanBeUsedForConstantPressure": false,
+      "CanBeUsedInEncounters": false,
+      "DifficultyRating": 1,
+      "MaxSpawnCount": 0,
+      "MinSpawnCount": 0,
+      "Rarity": 99
+    },
+    "ED_Woodlouse": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "DuringDefend"
+        },
+        "Then": 10,
+        "Else": 8
+      }
+    },
+    "ED_Woodlouse_Youngling": {
+      "CanBeUsedForConstantPressure": {
+        "Mutate": "ByMissionType",
+        "Default": false,
+        "PE": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "Or",
+            "A": {
+              "Mutate": "DuringDefend"
+            },
+            "C": {
+              "Mutate": "DuringEggAmbush",
+              "StartingAt": 4,
+              "StoppingAfter": 10
+            },
+            "F": {
+              "Mutate": "DuringExtraction"
+            },
+            "H": {
+              "Mutate": "DuringPECountdown"
+            }
+          },
+          "Then": false,
+          "Else": true
+        }
+      },
+      "CanBeUsedInEncounters": true,
+      "MaxSpawnCount": 9999,
+      "Rarity": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "DuringDefend"
+        },
+        "Then": 10,
+        "Else": 8
+      },
+      "SpawnAmountModifier": {
+        "Mutate": "Divide",
+        "A": 1,
+        "B": 3
+      }
+    }
+  },
+  "WaveSpawners": [
+    {
+      "Enabled": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "And",
+          "A": {
+            "Mutate": "IfFloat",
+            "Value": {
+              "Mutate": "DwarvesHealth"
+            },
+            "==": 0,
+            "Then": false,
+            "Else": true
+          },
+          "B": {
+            "Mutate": "ByMissionType",
+            "Default": true,
+            "Mining": {
+              "Mutate": "If",
+              "Condition": {
+                "Mutate": "Or",
+                "A": {
+                  "Mutate": "DuringDefend"
+                },
+                "B": {
+                  "Mutate": "DuringDread"
+                },
+                "C": {
+                  "Mutate": "DuringEggAmbush"
+                },
+                "F": {
+                  "Mutate": "DuringExtraction"
+                },
+                "G": {
+                  "Mutate": "DuringGenericSwarm"
+                }
+              },
+              "Then": false,
+              "Else": true
+            },
+            "Egg": {
+              "Mutate": "If",
+              "Condition": {
+                "Mutate": "Or",
+                "A": {
+                  "Mutate": "DuringDefend"
+                },
+                "B": {
+                  "Mutate": "DuringDread"
+                },
+                "C": {
+                  "Mutate": "DuringEggAmbush"
+                },
+                "F": {
+                  "Mutate": "DuringExtraction"
+                },
+                "G": {
+                  "Mutate": "DuringGenericSwarm"
+                }
+              },
+              "Then": false,
+              "Else": true
+            },
+            "Refinery": {
+              "Mutate": "ByRefineryPhase",
+              "Default": {
+                "Mutate": "If",
+                "Condition": {
+                  "Mutate": "Or",
+                  "A": {
+                    "Mutate": "DuringDefend"
+                  },
+                  "B": {
+                    "Mutate": "DuringDread"
+                  },
+                  "C": {
+                    "Mutate": "DuringEggAmbush"
+                  },
+                  "G": {
+                    "Mutate": "DuringGenericSwarm"
+                  }
+                },
+                "Then": false,
+                "Else": true
+              },
+              "Refining": false,
+              "RefiningStalled": false,
+              "RefiningComplete": false,
+              "RocketLaunched": false
+            },
+            "Salvage": {
+              "Mutate": "BySalvagePhase",
+              "Default": {
+                "Mutate": "If",
+                "Condition": {
+                  "Mutate": "Or",
+                  "B": {
+                    "Mutate": "DuringDread"
+                  },
+                  "C": {
+                    "Mutate": "DuringEggAmbush"
+                  }
+                },
+                "Then": false,
+                "Else": true
+              },
+              "Uplink": false,
+              "Refuel": false,
+              "Finished": false
+            },
+            "PE": false,
+            "DeepScan": {
+              "Mutate": "If",
+              "Condition": {
+                "Mutate": "Or",
+                "A": {
+                  "Mutate": "DuringDefend"
+                },
+                "B": {
+                  "Mutate": "DuringDread"
+                },
+                "C": {
+                  "Mutate": "DuringEggAmbush"
+                },
+                "E": {
+                  "Mutate": "DuringDrillevator"
+                },
+                "F": {
+                  "Mutate": "DuringExtraction"
+                },
+                "G": {
+                  "Mutate": "DuringGenericSwarm"
+                }
+              },
+              "Then": false,
+              "Else": true
+            },
+            "Escort": {
+              "Mutate": "ByEscortPhase",
+              "Default": {
+                "Mutate": "If",
+                "Condition": {
+                  "Mutate": "Or",
+                  "C": {
+                    "Mutate": "DuringEggAmbush"
+                  },
+                  "F": {
+                    "Mutate": "DuringExtraction"
+                  }
+                },
+                "Then": false,
+                "Else": true
+              },
+              "Moving": false,
+              "WaitingForFuel": false,
+              "FinalEventA": false,
+              "FinalEventB": false,
+              "FinalEventC": false,
+              "FinalEventD": false
+            },
+            "Elimination": {
+              "Mutate": "If",
+              "Condition": {
+                "Mutate": "Or",
+                "A": {
+                  "Mutate": "DuringDefend"
+                },
+                "B": {
+                  "Mutate": "DuringDread"
+                },
+                "C": {
+                  "Mutate": "DuringEggAmbush"
+                },
+                "F": {
+                  "Mutate": "DuringExtraction"
+                }
+              },
+              "Then": false,
+              "Else": true
+            },
+            "Sabotage": {
+              "Mutate": "BySaboPhase",
+              "Default": {
+                "Mutate": "If",
+                "Condition": {
+                  "Mutate": "Or",
+                  "B": {
+                    "Mutate": "DuringDread"
+                  },
+                  "C": {
+                    "Mutate": "DuringEggAmbush"
+                  },
+                  "F": {
+                    "Mutate": "DuringExtraction"
+                  }
+                },
+                "Then": false,
+                "Else": true
+              },
+              "Hacking": false,
+              "Phase1Vent": false,
+              "Phase1Eye": false,
+              "Phase2Vent": false,
+              "Phase2Eye": false,
+              "Phase3Vent": false,
+              "Phase3Eye": false
+            }
+          },
+          "C": {
+            "Mutate": "IfFloat",
+            "Value": {
+              "Mutate": "ByTime",
+              "InitialValue": 0,
+              "RateOfChange": 1,
+              "StartDelay": 0
+            },
+            ">=": {
+              "Mutate": "ByDNA",
+              "Default": 0,
+              "Egg": 60,
+              "Egg,3,x": 120,
+              "Refinery": 120
+            },
+            "Then": true,
+            "Else": false
+          }
+        },
+        "Then": true,
+        "Else": false
+      },
+      "Interval": {
+        "Mutate": "Add",
+        "A": 130,
+        "B": {
+          "Mutate": "Multiply",
+          "A": -10,
+          "B": {
+            "Mutate": "DwarfCount"
+          },
+          "C": {
+            "Mutate": "DwarvesHealth"
+          }
+        },
+        "C": {
+          "Mutate": "ByMissionType",
+          "Default": 0,
+          "Salvage": 15,
+          "Escort": -10
+        }
+      },
+      "Difficulty": {
+        "Mutate": "Divide",
+        "A": 2000,
+        "B": 3.5
+      },
+      "Distance": 2000,
+      "UnlockInterval": {
+        "Mutate": "IfFloat",
+        "Value": {
+          "Mutate": "DwarvesDown"
+        },
+        ">=": 2,
+        "Then": true,
+        "Else": false
+      },
+      "PauseOnDisable": true
+    }
+  ],
+  "EscortMule": {
+    "FriendlyFireModifier": 0.1,
+    "BigHitDamageModifier": 0.85,
+    "BigHitDamageReductionThreshold": 0,
+    "NeutralDamageModifier": 0.1
+  }
+}
