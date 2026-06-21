@@ -54,7 +54,7 @@
     "ExtraLargeEnemyDamageResistanceD": 0.75,
     "EnemyDamageResistance": 1.2,
     "EnemyDamageModifier": 5.1,
-    "EnemyCountModifier": 0.38,
+    "EnemyCountModifier": 0.375,
     "EncounterDifficulty": 850,
     "StationaryDifficulty": {
       "Mutate": "Divide",
@@ -63,7 +63,7 @@
         "A": 675,
         "B": 3.7
       },
-      "B": 0.38
+      "B": 0.375
     },
     "EnemyWaveInterval": 125,
     "EnemyNormalWaveInterval": 170,
