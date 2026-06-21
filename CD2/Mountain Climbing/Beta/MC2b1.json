@@ -1,0 +1,159 @@
+{
+  "Name": "Mountain Climbing 2.0 B01",
+  "Description": "Mountain Climbing, edited by noskill, based on StoneMasons Haz 8, but has Haz 7 EnemyCountModifier, EnemyWaveInterval & EnemyNormalWaveInterval. Beta 01:The original definition of Mountain Climbing.",
+  "Caps": {
+    "MaxActiveSwarmers": [
+      90,
+      120,
+      180
+    ],
+    "MaxActiveEnemies": [
+      90,
+      120,
+      180
+    ]
+  },
+  "Resupply": {
+    "Cost": 50
+  },
+  "Pools": {
+    "MinPoolSize": 15,
+    "DisruptiveEnemyPoolCount": {
+      "Min": 8,
+      "Max": 8
+    },
+    "StationaryEnemyCount": {
+      "Min": 6,
+      "Max": 6
+    }
+  },
+  "DifficultySetting": {
+    "BaseHazard": "Hazard 5",
+    "ExtraLargeEnemyDamageResistance": [
+      1.8,
+      2.1,
+      2.3,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceB": [
+      1.8,
+      2.1,
+      2.5,
+      3.3
+    ],
+    "ExtraLargeEnemyDamageResistanceC": [
+      1.8,
+      2.1,
+      2.5,
+      3.3
+    ],
+    "ExtraLargeEnemyDamageResistanceD": [
+      2.25,
+      2.35,
+      2.55,
+      2.75
+    ],
+    "EnemyDamageResistance": [
+      1.8,
+      2.1,
+      2.2,
+      2.25
+    ],
+    "EnemyDamageModifier": [
+      4.3,
+      4.55,
+      4.9,
+      5.1
+    ],
+    "EnemyCountModifier": [
+      2.3,
+      2.5,
+      2.9,
+      3.5
+    ],
+    "EncounterDifficulty": [
+      {
+        "weight": 1,
+        "min": 750,
+        "max": 950
+      }
+    ],
+    "StationaryDifficulty": [
+      {
+        "weight": 1,
+        "min": 600,
+        "max": 750
+      }
+    ],
+    "EnemyWaveInterval": [
+      {
+        "weight": 1,
+        "min": 120,
+        "max": 150
+      }
+    ],
+    "EnemyNormalWaveInterval": [
+      {
+        "weight": 2,
+        "min": 160,
+        "max": 200
+      },
+      {
+        "weight": 1,
+        "min": 180,
+        "max": 190
+      }
+    ],
+    "EnemyNormalWaveDifficulty": [
+      {
+        "weight": 1,
+        "min": 750,
+        "max": 850
+      }
+    ],
+    "EnemyDiversity": [
+      {
+        "weight": 1,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "weight": 4,
+        "min": 9,
+        "max": 10
+      }
+    ],
+    "StationaryEnemyDiversity": [
+      {
+        "weight": 1,
+        "min": 6,
+        "max": 6
+      }
+    ],
+    "VeteranNormal": [
+      {
+        "weight": 2,
+        "min": 0.7,
+        "max": 1
+      },
+      {
+        "weight": 9,
+        "min": 0.8,
+        "max": 0.9
+      }
+    ],
+    "VeteranLarge": 0.25,
+    "EnvironmentalDamageModifier": 1.8,
+    "PointExtractionScalar": 1.8,
+    "FriendlyFireModifier": 0.9,
+    "SpeedModifier": 1.45,
+    "AttackCooldownModifier": 2.25,
+    "ProjectileSpeedModifier": 1.9
+  },
+  "EscortMule": {
+    "FriendlyFireModifier": 0.1,
+    "BigHitDamageModifier": 0.75,
+    "BigHitDamageReductionThreshold": 0,
+    "NeutralDamageModifier": 0.1
+  }
+}

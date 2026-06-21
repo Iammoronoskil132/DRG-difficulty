@@ -1,0 +1,317 @@
+{
+  "Name": "Mountain Climbing 2.0 B04",
+  "Description": "Mountain Climbing, edited by noskill. Haz 8.5 enemy damage and speed, Haz 8 enemy resistance, Haz 7 enemy count. Beta 04:Revert the EnemyCountModifier changes in B03, buff the EnemyCountModifier of the non-swarm eggs, try to balances all enemies (B04:buff fire comp).",
+  "Caps": {
+    "MaxActiveSwarmers": [
+      120,
+      160,
+      240
+    ],
+    "MaxActiveEnemies": [
+      120,
+      160,
+      240
+    ]
+  },
+  "SpecialEncounters": [],
+  "Resupply": {
+    "Cost": {
+      "Mutate": "IfFloat",
+      "Value": {
+        "Mutate": "ResuppliesCalled"
+      },
+      "==": 0,
+      "Then": 40,
+      "Else": 60
+    }
+  },
+  "Pools": {
+    "MinPoolSize": 17,
+    "DisruptiveEnemyPoolCount": {
+      "Min": 8,
+      "Max": 8
+    },
+    "StationaryEnemyCount": {
+      "Min": 6,
+      "Max": 6
+    }
+  },
+  "DifficultySetting": {
+    "BaseHazard": "Hazard 5",
+    "ExtraLargeEnemyDamageResistance": [
+      1.8,
+      2.1,
+      2.5,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceB": [
+      1.8,
+      2.1,
+      2.5,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceC": [
+      1.8,
+      2.1,
+      2.5,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceD": [
+      2.25,
+      2.35,
+      2.55,
+      2.75
+    ],
+    "EnemyDamageResistance": [
+      1.8,
+      2.1,
+      2.2,
+      2.25
+    ],
+    "EnemyDamageModifier": [
+      4.55,
+      4.925,
+      5.3,
+      5.5
+    ],
+    "EnemyCountModifier": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          2.3,
+          2.5,
+          2.9,
+          3.5
+        ]
+      },
+      "B": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "DuringEggAmbush",
+          "StartingAt": 5,
+          "StoppingAfter": 10
+        },
+        "Then": 4,
+        "Else": 1
+      }
+    },
+    "EncounterDifficulty": 800,
+    "StationaryDifficulty": 750,
+    "EnemyWaveInterval": 135,
+    "EnemyNormalWaveInterval": 180,
+    "EnemyNormalWaveDifficulty": 800,
+    "EnemyDiversity": 8,
+    "StationaryEnemyDiversity": 6,
+    "VeteranNormal": 0.85,
+    "VeteranLarge": [
+      {
+        "weight": 1,
+        "min": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "DuringDefend"
+          },
+          "Then": {
+            "Mutate": "IfFloat",
+            "Value": {
+              "Mutate": "EnemyCount",
+              "ED": "ED_Spider_ShieldTank"
+            },
+            ">=": 2,
+            "Then": 0,
+            "Else": 0.25
+          },
+          "Else": {
+            "Mutate": "IfFloat",
+            "Value": {
+              "Mutate": "EnemyCount",
+              "ED": "ED_Spider_ShieldTank"
+            },
+            ">=": 4,
+            "Then": 0,
+            "Else": 0.25
+          }
+        },
+        "max": {
+          "Mutate": "If",
+          "Condition": {
+            "Mutate": "DuringDefend"
+          },
+          "Then": {
+            "Mutate": "IfFloat",
+            "Value": {
+              "Mutate": "EnemyCount",
+              "ED": "ED_Spider_ShieldTank"
+            },
+            ">=": 2,
+            "Then": 0,
+            "Else": 0.25
+          },
+          "Else": {
+            "Mutate": "IfFloat",
+            "Value": {
+              "Mutate": "EnemyCount",
+              "ED": "ED_Spider_ShieldTank"
+            },
+            ">=": 4,
+            "Then": 0,
+            "Else": 0.25
+          }
+        }
+      }
+    ],
+    "EnvironmentalDamageModifier": 1.8,
+    "PointExtractionScalar": 1,
+    "FriendlyFireModifier": 1,
+    "SpeedModifier": 1.5,
+    "AttackCooldownModifier": 2.375,
+    "ProjectileSpeedModifier": 2.3,
+    "HealthRegenerationMax": 0.4,
+    "ReviveHealthRatio": 0.4
+  },
+  "Enemies": {
+    "ED_BarrageInfector": {
+      "Base": "ED_BarrageInfector",
+      "Resistances": {
+        "DamageMultiplier": 2,
+        "FireDamageMultiplier": 1.47
+      }
+    },
+    "ED_Bomber": {
+      "Base": "ED_Bomber",
+      "Resistances": {
+        "FireDamageMultiplier": 1.47
+      }
+    },
+    "ED_CaveLeech": {
+      "Base": "ED_CaveLeech",
+      "CaveLeech": {
+        "TentacleSpeed": 750,
+        "TentacleRetractSpeed": 1375,
+        "TentaclePullSpeed": 2500,
+        "TentacleDropPlayerSpeed": 1875
+      }
+    },
+    "ED_JellyBreeder": {
+      "Base": "ED_JellyBreeder",
+      "Resistances": {
+        "DamageMultiplier": 2.9
+      },
+      "Movement": {
+        "MaxPawnSpeed": 2,
+        "MaxAcceleration": 2,
+        "MaxBrakingDeceleration": 2
+      },
+      "JellyBreeder": {
+        "TimeBetweenBursts": 10,
+        "TimeBetweenEggs": 2,
+        "CloseToSpawnEggTime": 0,
+        "EggBurstSize": 5,
+        "MaxJellies": 40,
+        "SpawnAmount": 4,
+        "EggHealth": 40
+      }
+    },
+    "ED_Spider_RapidShooter": {
+      "Base": "ED_Spider_RapidShooter",
+      "Resistances": {
+        "FireDamageMultiplier": 1.44
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.44,
+        "MaxAcceleration": 1.44,
+        "MaxBrakingDeceleration": 1.44
+      }
+    },
+    "ED_ShootingPlant": {
+      "Base": "ED_ShootingPlant",
+      "Resistances": {
+        "DamageMultiplier": 1.33
+      }
+    },
+    "ED_SpiderSpawner": {
+      "Base": "ED_SpiderSpawner",
+      "Resistances": {
+        "DamageMultiplier": 1.1,
+        "FireDamageMultiplier": 5
+      }
+    },
+    "ED_Spider_Buffer": {
+      "Base": "ED_Spider_Buffer",
+      "Resistances": {
+        "FireDamageMultiplier": 1.24
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.24,
+        "MaxAcceleration": 1.24,
+        "MaxBrakingDeceleration": 1.24
+      }
+    },
+    "ED_Spider_ExploderTank": {
+      "Base": "ED_Spider_ExploderTank",
+      "Resistances": {
+        "FireDamageMultiplier": 1.56
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.25,
+        "MaxAcceleration": 1.25,
+        "MaxBrakingDeceleration": 1.25
+      }
+    },
+    "ED_Spider_ShieldTank": {
+      "Base": "ED_Spider_ShieldTank",
+      "Resistances": {
+        "FireDamageMultiplier": 0.5,
+        "CorrosiveDamageMultiplier": 0.75,
+        "ExplosionDamageMultiplier": 0.5,
+        "ColdDamageMultiplier": 1,
+        "ElectricDamageMultiplier": 1
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.18,
+        "MaxAcceleration": 1.18,
+        "MaxBrakingDeceleration": 1.18
+      },
+      "Temperature": {
+        "WarmingRate": 99
+      }
+    },
+    "ED_Spider_Spawn_Clone": {
+      "Base": "ED_Spider_Spawn"
+    },
+    "ED_Spider_Spawn": {
+      "Spawner": {
+        "ED": "ED_Spider_Spawn_Clone",
+        "OnSpawnDelay": 15,
+        "IntervalSpawnCount": 4,
+        "Interval": 9999,
+        "MaxSpawns": 1
+      }
+    },
+    "ED_Spider_Stalker": {
+      "Base": "ED_Spider_Stalker",
+      "Resistances": {
+        "DamageMultiplier": 1.2
+      },
+      "Movement": {
+        "MaxPawnSpeed": 0.83,
+        "MaxAcceleration": 0.83,
+        "MaxBrakingDeceleration": 0.83
+      },
+      "MaxSpawnCount": 2,
+      "DifficultyRating": 79,
+      "Rarity": 8.33
+    },
+    "ED_TentaclePlant": {
+      "Base": "ED_TentaclePlant",
+      "TimeDilation": 0.5
+    }
+  },
+  "EscortMule": {
+    "FriendlyFireModifier": 0.1,
+    "BigHitDamageModifier": 0.8,
+    "BigHitDamageReductionThreshold": 0,
+    "NeutralDamageModifier": 0.1
+  }
+}

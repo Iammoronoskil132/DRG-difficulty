@@ -1,0 +1,173 @@
+{
+  "Name": "Mountain Climbing 2.5 B03",
+  "Description": "Mountain Climbing, edited by noskill. Haz 8.5 enemy damage and speed, Haz 8 enemy resistance, Haz 7 enemy count. Beta 03:Tweak ExtraLargeEnemyDamageResistance, change Resupply Cost, buff EnemyCountModifier but nerf EncounterDifficulty、 StationaryDifficulty、 EnemyNormalWaveDifficulty、 EnemyWaveInterval, buff StationaryDifficulty but nerf EncounterDifficulty, buff HealthRegenerationMax、 ReviveHealthRatio、 BigHitDamageModifier.",
+  "Caps": {
+    "MaxActiveSwarmers": [
+      120,
+      160,
+      240
+    ],
+    "MaxActiveEnemies": [
+      120,
+      160,
+      240
+    ]
+  },
+  "SpecialEncounters": [],
+  "Resupply": {
+    "Cost": {
+      "Mutate": "IfFloat",
+      "Value": {
+        "Mutate": "ResuppliesCalled"
+      },
+      "==": 0,
+      "Then": 40,
+      "Else": 60
+    }
+  },
+  "Pools": {
+    "MinPoolSize": 17,
+    "DisruptiveEnemyPoolCount": {
+      "Min": 8,
+      "Max": 8
+    },
+    "StationaryEnemyCount": {
+      "Min": 6,
+      "Max": 6
+    }
+  },
+  "DifficultySetting": {
+    "BaseHazard": "Hazard 5",
+    "ExtraLargeEnemyDamageResistance": [
+      1.8,
+      2.1,
+      2.5,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceB": [
+      1.8,
+      2.1,
+      2.5,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceC": [
+      1.8,
+      2.1,
+      2.5,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceD": [
+      2.25,
+      2.35,
+      2.55,
+      2.75
+    ],
+    "EnemyDamageResistance": [
+      2.25,
+      2.1,
+      2.2,
+      2.25
+    ],
+    "EnemyDamageModifier": [
+      4.55,
+      4.925,
+      5.3,
+      5.5
+    ],
+    "EnemyCountModifier": [
+      2.875,
+      3.125,
+      3.625,
+      4.375
+    ],
+    "EncounterDifficulty": 640,
+    "StationaryDifficulty": 600,
+    "EnemyWaveInterval": 168.75,
+    "EnemyNormalWaveInterval": 180,
+    "EnemyNormalWaveDifficulty": 640,
+    "EnemyDiversity": 8,
+    "StationaryEnemyDiversity": 6,
+    "VeteranNormal": 0.85,
+    "VeteranLarge": 0.25,
+    "EnvironmentalDamageModifier": 1.8,
+    "PointExtractionScalar": 1,
+    "FriendlyFireModifier": 1,
+    "SpeedModifier": 1.5,
+    "AttackCooldownModifier": 2.375,
+    "ProjectileSpeedModifier": 2.3,
+    "HealthRegenerationMax": 0.4,
+    "ReviveHealthRatio": 0.4
+  },
+  "Enemies": {
+    "ED_BarrageInfector": {
+      "Base": "ED_BarrageInfector",
+      "Resistances": {
+        "DamageMultiplier": 2
+      }
+    },
+    "ED_CaveLeech": {
+      "Base": "ED_CaveLeech",
+      "CaveLeech": {
+        "TentacleSpeed": 750,
+        "TentacleRetractSpeed": 1375,
+        "TentaclePullSpeed": 2500,
+        "TentacleDropPlayerSpeed": 1875
+      }
+    },
+    "ED_JellyBreeder": {
+      "Base": "ED_JellyBreeder",
+      "Resistances": {
+        "DamageMultiplier": 2.92
+      },
+      "Movement": {
+        "MaxPawnSpeed": 2,
+        "MaxAcceleration": 2,
+        "MaxBrakingDeceleration": 2
+      },
+      "JellyBreeder": {
+        "TimeBetweenBursts": 10,
+        "TimeBetweenEggs": 2,
+        "CloseToSpawnEggTime": 0,
+        "EggBurstSize": 5,
+        "MaxJellies": 40,
+        "SpawnAmount": 4,
+        "EggHealth": 40
+      }
+    },
+    "ED_ShootingPlant": {
+      "Base": "ED_ShootingPlant",
+      "Resistances": {
+        "DamageMultiplier": 1.33
+      }
+    },
+    "ED_SpiderSpawner": {
+      "Base": "ED_SpiderSpawner",
+      "Resistances": {
+        "DamageMultiplier": 1.1,
+        "FireDamageMultiplier": 5
+      }
+    },
+    "ED_Spider_Spawn_Clone": {
+      "Base": "ED_Spider_Spawn"
+    },
+    "ED_Spider_Spawn": {
+      "Spawner": {
+        "ED": "ED_Spider_Spawn_Clone",
+        "OnSpawnDelay": 15,
+        "IntervalSpawnCount": 4,
+        "Interval": 9999,
+        "MaxSpawns": 1
+      }
+    },
+    "ED_TentaclePlant": {
+      "Base": "ED_TentaclePlant",
+      "TimeDilation": 0.5
+    }
+  },
+  "EscortMule": {
+    "FriendlyFireModifier": 0.1,
+    "BigHitDamageModifier": 0.825,
+    "BigHitDamageReductionThreshold": 0,
+    "NeutralDamageModifier": 0.1
+  }
+}

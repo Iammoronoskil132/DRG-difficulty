@@ -1,0 +1,629 @@
+{
+  "Name": "Mountain Climbing 2.0 B12",
+  "Description": "Mountain Climbing, edited by noskill. Haz 8.5 enemy damage and speed, Haz 8 enemy resistance, Haz 7 enemy count. Beta 12: Ban warnings and anomalies that affect the difficulty too much.",
+  "Caps": {
+    "MaxActiveSwarmers": [
+      120,
+      140,
+      180,
+      240
+    ],
+    "MaxActiveEnemies": [
+      120,
+      140,
+      180,
+      240
+    ]
+  },
+  "Warnings": {
+    "Banned": [
+      "MMUT_BloodSugar",
+      "MMUT_ExterminationContract",
+      "MMUT_LowGravity",
+      "MMUT_OxygenRich",
+      "MMUT_Weakspot",
+      "WRN_BulletHell",
+      "WRN_Ghost",
+      "WRN_HeroEnemies",
+      "WRN_LethalEnemies",
+      "WRN_MacteraCave",
+      "WRN_NoOxygen",
+      "WRN_NoShields",
+      "WRN_Plague",
+      "WRN_RegenerativeEnemies",
+      "WRN_RivalIncursion",
+      "WRN_RockInfestation"
+    ]
+  },
+  "SpecialEncounters": [
+    {
+      "BaseChance": {
+        "Mutate": "ByMissionType",
+        "Default": 0,
+        "Escort": 1
+      },
+      "CanSpawnInDeepDive": true,
+      "Enemy": "ED_TentaclePlant"
+    }
+  ],
+  "Resupply": {
+    "Cost": {
+      "Mutate": "IfFloat",
+      "Value": {
+        "Mutate": "ResuppliesCalled"
+      },
+      "==": 0,
+      "Then": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          20,
+          30,
+          40,
+          40
+        ]
+      },
+      "Else": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          40,
+          50,
+          60,
+          60
+        ]
+      }
+    }
+  },
+  "Pools": {
+    "MinPoolSize": 17,
+    "DisruptiveEnemyPoolCount": {
+      "Min": 8,
+      "Max": 8
+    },
+    "StationaryEnemyCount": {
+      "Min": 6,
+      "Max": 6
+    },
+    "StationaryPool": {
+      "Remove": [
+        {
+          "Mutate": "ByMissionType",
+          "Default": [],
+          "Escort": [
+            "ED_TentaclePlant"
+          ]
+        }
+      ]
+    }
+  },
+  "DifficultySetting": {
+    "BaseHazard": "Hazard 5",
+    "ExtraLargeEnemyDamageResistance": [
+      1.7,
+      1.9,
+      2.3,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceB": [
+      1.7,
+      1.9,
+      2.3,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceC": [
+      1.7,
+      1.9,
+      2.3,
+      2.9
+    ],
+    "ExtraLargeEnemyDamageResistanceD": [
+      2.15,
+      2.25,
+      2.45,
+      2.75
+    ],
+    "EnemyDamageResistance": [
+      1.77,
+      1.85,
+      2.01,
+      2.25
+    ],
+    "EnemyDamageModifier": [
+      4.45,
+      4.625,
+      4.975,
+      5.5
+    ],
+    "EnemyCountModifier": {
+      "Mutate": "Multiply",
+      "A": {
+        "Mutate": "ByPlayerCount",
+        "Values": [
+          2.1,
+          2.4,
+          2.9,
+          3.5
+        ]
+      },
+      "B": {
+        "Mutate": "If",
+        "Condition": {
+          "Mutate": "DuringEggAmbush",
+          "StartingAt": 5,
+          "StoppingAfter": 10
+        },
+        "Then": {
+          "Mutate": "ByPlayerCount",
+          "Values": [
+            1,
+            1.5,
+            2.5,
+            4
+          ]
+        },
+        "Else": 1
+      }
+    },
+    "EncounterDifficulty": 800,
+    "StationaryDifficulty": 750,
+    "EnemyWaveInterval": 135,
+    "EnemyNormalWaveInterval": 180,
+    "EnemyNormalWaveDifficulty": 800,
+    "EnemyDiversity": {
+      "Mutate": "If",
+      "Condition": {
+        "Mutate": "Or",
+        "A": {
+          "Mutate": "DuringDefend"
+        },
+        "B": {
+          "Mutate": "DuringDrillevator"
+        },
+        "C": {
+          "Mutate": "DuringExtraction"
+        },
+        "D": {
+          "Mutate": "DuringGenericSwarm"
+        },
+        "E": {
+          "Mutate": "DuringPECountdown"
+        }
+      },
+      "Then": 7,
+      "Else": 9
+    },
+    "StationaryEnemyDiversity": 6,
+    "VeteranNormal": 0.85,
+    "VeteranLarge": {
+      "Mutate": "If",
+      "Condition": {
+        "Mutate": "DuringDefend"
+      },
+      "Then": {
+        "Mutate": "IfFloat",
+        "Value": {
+          "Mutate": "EnemyCount",
+          "ED": "ED_Spider_ShieldTank"
+        },
+        ">=": 1,
+        "Then": 0,
+        "Else": 0.25
+      },
+      "Else": {
+        "Mutate": "IfFloat",
+        "Value": {
+          "Mutate": "EnemyCount",
+          "ED": "ED_Spider_ShieldTank"
+        },
+        ">=": 3,
+        "Then": 0,
+        "Else": 0.25
+      }
+    },
+    "EnvironmentalDamageModifier": 1.8,
+    "PointExtractionScalar": 1,
+    "FriendlyFireModifier": 1,
+    "SpeedModifier": 1.5,
+    "AttackCooldownModifier": 2.375,
+    "ProjectileSpeedModifier": 2.3,
+    "HealthRegenerationMax": {
+      "Mutate": "ByPlayerCount",
+      "Values": [
+        0.7,
+        0.55,
+        0.45,
+        0.4
+      ]
+    },
+    "ReviveHealthRatio": {
+      "Mutate": "ByPlayerCount",
+      "Values": [
+        0.7,
+        0.55,
+        0.45,
+        0.4
+      ]
+    }
+  },
+  "EnemiesNoSync": {
+    "ED_BarrageInfector": {
+      "SpawnAmountModifier": 0.5,
+      "Resistances": {
+        "DamageMultiplier": 2
+      }
+    },
+    "ED_Bomber": {
+      "DifficultyRating": 50,
+      "Resistances": {
+        "FireDamageMultiplier": 1.404
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.17,
+        "MaxAcceleration": 1.17,
+        "AlignDirectionSpeed": 1.17,
+        "MaxBrakingDeceleration": 1.17
+      }
+    },
+    "ED_Bomber_Rockpox_Plague": {
+      "SpawnAmountModifier": 0.5,
+      "Resistances": {
+        "DamageMultiplier": 0.3
+      }
+    },
+    "ED_CaveLeech": {
+      "SpawnAmountModifier": 1,
+      "CaveLeech": {
+        "TentacleSpeed": 750,
+        "TentacleRetractSpeed": 1375,
+        "TentaclePullSpeed": 2500,
+        "TentacleDropPlayerSpeed": 1875
+      }
+    },
+    "ED_Crawler": {
+      "DifficultyRating": 150
+    },
+    "ED_FacilityTurret_Barrier": {
+      "SpawnAmountModifier": 0.5,
+      "Temperature": {
+        "FreezeTemperature": -70,
+        "FozenDamageBonusScale": 3
+      },
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      }
+    },
+    "ED_FacilityTurret_Burst": {
+      "SpawnAmountModifier": 0.5,
+      "Temperature": {
+        "FreezeTemperature": -70,
+        "FozenDamageBonusScale": 3
+      },
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      }
+    },
+    "ED_FacilityTurret_Sniper": {
+      "SpawnAmountModifier": 0.5,
+      "Temperature": {
+        "FreezeTemperature": -25,
+        "FozenDamageBonusScale": 3
+      },
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      }
+    },
+    "ED_Grabber": {
+      "DifficultyRating": 70,
+      "MaxSpawnCount": 1
+    },
+    "ED_JellyBreeder": {
+      "MaxSpawnCount": 9999,
+      "SpawnAmountModifier": 1,
+      "Resistances": {
+        "DamageMultiplier": 3
+      },
+      "Movement": {
+        "MaxPawnSpeed": 2,
+        "MaxAcceleration": 2,
+        "AlignDirectionSpeed": 2,
+        "MaxBrakingDeceleration": 2
+      },
+      "JellyBreeder": {}
+    },
+    "ED_JellyBreeder_RockpoxPlague": {
+      "Resistances": {
+        "DamageMultiplier": 0.3
+      }
+    },
+    "ED_Jelly_Swarmer": {
+      "DifficultyRating": 10,
+      "MinSpawnCount": 4,
+      "MaxSpawnCount": 9999
+    },
+    "ED_PatrolBot": {
+      "DifficultyRating": 70,
+      "MaxSpawnCount": 4,
+      "Temperature": {
+        "FreezeTemperature": -74,
+        "UnfreezeTemperature": -42,
+        "FozenDamageBonusScale": 3
+      },
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      }
+    },
+    "ED_PatrolBot_Caretaker": {
+      "MaxSpawnCount": 4,
+      "Temperature": {
+        "FreezeTemperature": -74,
+        "UnfreezeTemperature": -42,
+        "FozenDamageBonusScale": 3
+      },
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      }
+    },
+    "ED_Prospector": {
+      "Resistances": {
+        "DamageMultiplier": 100
+      },
+      "TimeDilation": 0.01
+    },
+    "ED_Shark": {
+      "DifficultyRating": 50
+    },
+    "ED_ShootingPlant": {
+      "SpawnAmountModifier": 0.5,
+      "Resistances": {
+        "DamageMultiplier": 1.33
+      }
+    },
+    "ED_Shredder": {
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      },
+      "Temperature": {
+        "FreezeTemperature": -30
+      }
+    },
+    "ED_SpiderSpawner": {
+      "MaxSpawnCount": 9999,
+      "SpawnAmountModifier": 1,
+      "Resistances": {
+        "DamageMultiplier": 3
+      }
+    },
+    "ED_Spider_Boss_Heavy": {
+      "Resistances": {
+        "ElectricDamageMultiplier": 0.7,
+        "ColdDamageMultiplier": 1
+      }
+    },
+    "ED_Spider_Boss_TwinA": {
+      "Resistances": {
+        "ElectricDamageMultiplier": 0.8,
+        "ColdDamageMultiplier": 1
+      }
+    },
+    "ED_Spider_Boss_TwinB": {
+      "Resistances": {
+        "ElectricDamageMultiplier": 0.8,
+        "ColdDamageMultiplier": 1
+      }
+    },
+    "ED_Spider_Buffer": {
+      "DifficultyRating": 50,
+      "Resistances": {
+        "FireDamageMultiplier": 1.17
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.17,
+        "AlignDirectionSpeed": 1.17,
+        "MaxAcceleration": 1.17,
+        "MaxBrakingDeceleration": 1.17
+      }
+    },
+    "ED_Spider_ExploderTank": {
+      "DifficultyRating": 70,
+      "Resistances": {
+        "FireDamageMultiplier": 1.381
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.17,
+        "AlignDirectionSpeed": 1.17,
+        "MaxAcceleration": 1.17,
+        "MaxBrakingDeceleration": 1.17
+      }
+    },
+    "ED_Spider_Exploder_Rockpox_Plague": {
+      "Resistances": {
+        "DamageMultiplier": 0.3
+      }
+    },
+    "ED_Spider_Grunt": {
+      "Rarity": 0.001
+    },
+    "ED_Spider_Grunt_Guard": {
+      "Resistances": {
+        "ColdDamageMultiplier": 1,
+        "ExplosionDamageMultiplier": 0.75,
+        "PoisonDamageMultiplier": 0.75
+      }
+    },
+    "ED_Spider_Grunt_RockpoxPlague": {
+      "Resistances": {
+        "DamageMultiplier": 0.3
+      }
+    },
+    "ED_Spider_Lobber": {
+      "DifficultyRating": 50
+    },
+    "ED_Spider_RapidShooter": {
+      "DifficultyRating": 70,
+      "MaxSpawnCount": 1,
+      "Resistances": {
+        "FireDamageMultiplier": 1.17
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.17,
+        "AlignDirectionSpeed": 1.17,
+        "MaxAcceleration": 1.17,
+        "MaxBrakingDeceleration": 1.17
+      }
+    },
+    "ED_Spider_ShieldTank": {
+      "Resistances": {
+        "FireDamageMultiplier": 0.5,
+        "CorrosiveDamageMultiplier": 0.75,
+        "ExplosionDamageMultiplier": 0.5,
+        "ColdDamageMultiplier": 1,
+        "ElectricDamageMultiplier": 1
+      },
+      "Movement": {
+        "MaxPawnSpeed": 1.17,
+        "AlignDirectionSpeed": 1.17,
+        "MaxAcceleration": 1.17,
+        "MaxBrakingDeceleration": 1.17
+      },
+      "Temperature": {
+        "WarmingRate": 99
+      }
+    },
+    "ED_Spider_Shooter": {
+      "DifficultyRating": 50
+    },
+    "ED_Spider_Shooter_Rockpox_Plague": {
+      "Resistances": {
+        "DamageMultiplier": 0.3
+      }
+    },
+    "ED_Spider_Spawn_Clone": {
+      "Base": "ED_Spider_Spawn"
+    },
+    "ED_Spider_Spawn": {
+      "Spawner": {
+        "ED": "ED_Spider_Spawn_Clone",
+        "OnSpawnDelay": 15,
+        "IntervalSpawnCount": {
+          "Mutate": "ByPlayerCount",
+          "Values": [
+            0,
+            0,
+            1,
+            2
+          ]
+        },
+        "Interval": 9999,
+        "MaxSpawns": 1
+      }
+    },
+    "ED_Spider_Stalker": {
+      "DifficultyRating": 70,
+      "Resistances": {
+        "DamageMultiplier": 1.2,
+        "ElectricDamageMultiplier": 1
+      },
+      "Movement": {
+        "MaxPawnSpeed": 0.9,
+        "AlignDirectionSpeed": 0.9,
+        "MaxAcceleration": 0.9,
+        "MaxBrakingDeceleration": 0.9
+      }
+    },
+    "ED_Spider_Stinger": {
+      "DifficultyRating": 70,
+      "Resistances": {
+        "PiercingDamageMultiplier": 1
+      }
+    },
+    "ED_Spider_Swarmer_Pheromone_NOFX_Clone": {
+      "Base": "ED_Spider_Swarmer_Pheromone_NOFX"
+    },
+    "ED_Spider_Swarmer_Pheromone_NOFX": {
+      "Spawner": {
+        "ED": "ED_Spider_Swarmer_Pheromone_NOFX_Clone",
+        "OnSpawnDelay": 10,
+        "IntervalSpawnCount": {
+          "Mutate": "ByPlayerCount",
+          "Values": [
+            0,
+            0,
+            1,
+            2
+          ]
+        },
+        "Interval": 9999,
+        "MaxSpawns": 1
+      }
+    },
+    "ED_Spider_Tank_Boss": {
+      "Resistances": {
+        "ElectricDamageMultiplier": 0.7,
+        "ColdDamageMultiplier": 1
+      }
+    },
+    "ED_Spider_Tank_HeavySpawn": {
+      "SpawnSpread": 500,
+      "Movement": {
+        "MaxPawnSpeed": 1.29,
+        "AlignDirectionSpeed": 1.29,
+        "MaxAcceleration": 1.29,
+        "MaxBrakingDeceleration": 1.29
+      },
+      "Resistances": {
+        "DamageMultiplier": 1.29
+      }
+    },
+    "ED_Spider_Tank_RockpoxPlague": {
+      "Resistances": {
+        "DamageMultiplier": 0.3
+      }
+    },
+    "ED_TentaclePlant": {
+      "SpawnAmountModifier": 0.5,
+      "SpawnSpread": 0,
+      "TimeDilation": 0.4
+    },
+    "ED_Terminator": {
+      "Temperature": {
+        "FreezeTemperature": -30,
+        "WarmingRate": 0,
+        "FozenDamageBonusScale": 3
+      },
+      "Resistances": {
+        "CorrosiveDamageMultiplier": 3
+      }
+    },
+    "ED_Woodlouse": {
+      "DifficultyRating": 70,
+      "Resistances": {
+        "ElectricDamageMultiplier": 0.7,
+        "ColdDamageMultiplier": 1,
+        "PhysicalDamageMultiplier": 1.5
+      }
+    },
+    "ED_Woodlouse_Youngling": {
+      "MinSpawnCount": 2,
+      "MaxSpawnCount": 4,
+      "SpawnAmountModifier": 0.5,
+      "Resistances": {
+        "ElectricDamageMultiplier": 0.7,
+        "ColdDamageMultiplier": 1,
+        "PhysicalDamageMultiplier": 1.2
+      }
+    }
+  },
+  "EscortMule": {
+    "FriendlyFireModifier": 0.1,
+    "BigHitDamageModifier": {
+      "Mutate": "ByPlayerCount",
+      "Values": [
+        0.84,
+        0.83,
+        0.81,
+        0.78
+      ]
+    },
+    "BigHitDamageReductionThreshold": 0,
+    "NeutralDamageModifier": 0.1
+  }
+}

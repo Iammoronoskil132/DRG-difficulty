@@ -1,0 +1,4143 @@
+{
+	"Name": "Mountain Climbing 2.0 B25",
+	"Description": "Mountain Climbing, edited by noskill. Haz 8 enemy damage、 speed、 resistance, Haz 7 enemy count. Beta 25: Add no Gunner / Driller buffing when < 4P、 has Scout buffing when < 4P, nerf Exploder damage, adjust special enemies Rarity, nerf egg waves, buff starting nitra.",
+	"Caps": {
+		"MaxActiveEnemies": {
+			"Mutate": "Round",
+			"Value": {
+				"Mutate": "Multiply",
+				"A": 240,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.55,
+						0.7,
+						0.85,
+						1
+					]
+				},
+				"C": {
+					"Mutate": "If",
+					"Condition": {
+						"Mutate": "And",
+						"A": {
+							"Mutate": "IfFloat",
+							"Value": {
+								"Mutate": "DwarfCount"
+							},
+							"<": 4,
+							"Then": true,
+							"Else": false
+						},
+						"B": {
+							"Mutate": "IfFloat",
+							"Value": {
+								"Mutate": "ScoutCount"
+							},
+							">": 0,
+							"Then": true,
+							"Else": false
+						}
+					},
+					"Then": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.85,
+							0.9,
+							0.95,
+							1
+						]
+					},
+					"Else": 1
+				}
+			}
+		},
+		"MaxActiveSwarmers": {
+			"Mutate": "Round",
+			"Value": {
+				"Mutate": "Multiply",
+				"A": 240,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.55,
+						0.7,
+						0.85,
+						1
+					]
+				},
+				"C": {
+					"Mutate": "If",
+					"Condition": {
+						"Mutate": "And",
+						"A": {
+							"Mutate": "IfFloat",
+							"Value": {
+								"Mutate": "DwarfCount"
+							},
+							"<": 4,
+							"Then": true,
+							"Else": false
+						},
+						"B": {
+							"Mutate": "IfFloat",
+							"Value": {
+								"Mutate": "ScoutCount"
+							},
+							">": 0,
+							"Then": true,
+							"Else": false
+						}
+					},
+					"Then": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.85,
+							0.9,
+							0.95,
+							1
+						]
+					},
+					"Else": 1
+				}
+			}
+		}
+	},
+	"Darkness": {
+		"EnvironmentalLight": {
+			"Mutate": "If",
+			"Condition": {
+				"Mutate": "And",
+				"A": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarfCount"
+					},
+					"<": 4,
+					"Then": true,
+					"Else": false
+				},
+				"B": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "GunnerCount"
+					},
+					"<": 2,
+					"Then": true,
+					"Else": false
+				},
+				"C": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "ScoutCount"
+					},
+					"<": 1,
+					"Then": true,
+					"Else": false
+				}
+			},
+			"Then": {
+				"Mutate": "ByDNA",
+				"Default": 1,
+				"x,x,2": {
+					"Mutate": "Pow",
+					"A": 2,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				},
+				"x,x,3": {
+					"Mutate": "Pow",
+					"A": 4,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				}
+			},
+			"Else": 1
+		},
+		"FlareGunDuration": 9999,
+		"FlareGunStrength": {
+			"Mutate": "ByDNA",
+			"Default": 1,
+			"x,x,3": {
+				"Mutate": "Pow",
+				"A": 2,
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 3
+				}
+			}
+		},
+		"FlashlightStrength": {
+			"Mutate": "If",
+			"Condition": {
+				"Mutate": "And",
+				"A": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarfCount"
+					},
+					"<": 4,
+					"Then": true,
+					"Else": false
+				},
+				"B": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "GunnerCount"
+					},
+					"<": 2,
+					"Then": true,
+					"Else": false
+				},
+				"C": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "ScoutCount"
+					},
+					"<": 1,
+					"Then": true,
+					"Else": false
+				}
+			},
+			"Then": {
+				"Mutate": "ByDNA",
+				"Default": 1,
+				"x,x,2": {
+					"Mutate": "Pow",
+					"A": 2,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				},
+				"x,x,3": {
+					"Mutate": "Pow",
+					"A": 4,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				}
+			},
+			"Else": 1
+		},
+		"FlareProductionTime": {
+			"Mutate": "If",
+			"Condition": {
+				"Mutate": "And",
+				"A": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarfCount"
+					},
+					"<": 4,
+					"Then": true,
+					"Else": false
+				},
+				"B": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "GunnerCount"
+					},
+					"<": 2,
+					"Then": true,
+					"Else": false
+				},
+				"C": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "ScoutCount"
+					},
+					"<": 1,
+					"Then": true,
+					"Else": false
+				}
+			},
+			"Then": {
+				"Mutate": "Multiply",
+				"A": 12,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.5,
+						0.75,
+						1,
+						1
+					]
+				}
+			},
+			"Else": 12
+		},
+		"FlareStrength": {
+			"Mutate": "If",
+			"Condition": {
+				"Mutate": "And",
+				"A": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarfCount"
+					},
+					"<": 4,
+					"Then": true,
+					"Else": false
+				},
+				"B": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "GunnerCount"
+					},
+					"<": 2,
+					"Then": true,
+					"Else": false
+				},
+				"C": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "ScoutCount"
+					},
+					"<": 1,
+					"Then": true,
+					"Else": false
+				}
+			},
+			"Then": {
+				"Mutate": "ByDNA",
+				"Default": 1,
+				"x,x,2": {
+					"Mutate": "Pow",
+					"A": 2,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				},
+				"x,x,3": {
+					"Mutate": "Pow",
+					"A": 4,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				}
+			},
+			"Else": 1
+		},
+		"PlayerIllumination": {
+			"Mutate": "If",
+			"Condition": {
+				"Mutate": "And",
+				"A": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarfCount"
+					},
+					"<": 4,
+					"Then": true,
+					"Else": false
+				},
+				"B": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "GunnerCount"
+					},
+					"<": 2,
+					"Then": true,
+					"Else": false
+				},
+				"C": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "ScoutCount"
+					},
+					"<": 1,
+					"Then": true,
+					"Else": false
+				}
+			},
+			"Then": {
+				"Mutate": "ByDNA",
+				"Default": 1,
+				"x,x,2": {
+					"Mutate": "Pow",
+					"A": 2,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				},
+				"x,x,3": {
+					"Mutate": "Pow",
+					"A": 4,
+					"B": {
+						"Mutate": "Divide",
+						"A": 1,
+						"B": 3
+					}
+				}
+			},
+			"Else": 1
+		}
+	},
+	"DifficultySetting": {
+		"BaseHazard": "Hazard 5",
+		"AttackCooldownModifier": 2.25,
+		"EncounterDifficulty": {
+			"Mutate": "Divide",
+			"A": {
+				"Mutate": "Add",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 750,
+							"B": 950
+						},
+						"B": 2
+					},
+					"B": 1
+				},
+				"B": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 0,
+							"B": 0
+						},
+						"B": 2
+					},
+					"B": 0
+				},
+				"C": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 0,
+							"B": 0
+						},
+						"B": 2
+					},
+					"B": 0
+				}
+			},
+			"B": {
+				"Mutate": "Add",
+				"A": 1,
+				"B": 0,
+				"C": 0
+			}
+		},
+		"EnemyCountModifier": {
+			"Mutate": "Multiply",
+			"A": 3.5,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.55,
+					0.7,
+					0.85,
+					1
+				]
+			},
+			"C": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "And",
+					"A": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarfCount"
+						},
+						"<": 4,
+						"Then": true,
+						"Else": false
+					},
+					"B": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "ScoutCount"
+						},
+						">": 0,
+						"Then": true,
+						"Else": false
+					}
+				},
+				"Then": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.85,
+						0.9,
+						0.95,
+						1
+					]
+				},
+				"Else": 1
+			}
+		},
+		"EnemyDamageModifier": {
+			"Mutate": "Multiply",
+			"A": 5.1,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.7,
+					0.8,
+					0.9,
+					1
+				]
+			},
+			"C": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "And",
+					"A": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarfCount"
+						},
+						"<": 4,
+						"Then": true,
+						"Else": false
+					},
+					"B": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "GunnerCount"
+						},
+						"<": 1,
+						"Then": true,
+						"Else": false
+					}
+				},
+				"Then": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarvesAmmo"
+					},
+					"<": 0.5,
+					"Then": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarvesAmmo"
+						},
+						"<": 0.25,
+						"Then": {
+							"Mutate": "ByDNA",
+							"Default": 0.9,
+							"x,2,x": 0.8,
+							"x,3,x": 0.7
+						},
+						"Else": {
+							"Mutate": "ByDNA",
+							"Default": 0.95,
+							"x,2,x": 0.9,
+							"x,3,x": 0.85
+						}
+					},
+					"Else": 1
+				},
+				"Else": 1
+			}
+		},
+		"EnemyDamageResistance": {
+			"Mutate": "Multiply",
+			"A": 2.25,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.7,
+					0.8,
+					0.9,
+					1
+				]
+			}
+		},
+		"EnemyDiversity": {
+			"Mutate": "ByMissionType",
+			"Default": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "Or",
+					"A": {
+						"Mutate": "DuringDefend"
+					},
+					"B": {
+						"Mutate": "DuringDrillevator"
+					},
+					"C": {
+						"Mutate": "DuringExtraction"
+					},
+					"D": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"E": {
+						"Mutate": "DuringPECountdown"
+					}
+				},
+				"Then": 7,
+				"Else": 10
+			},
+			"Mining": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "Or",
+					"A": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"B": {
+						"Mutate": "DuringExtraction"
+					}
+				},
+				"Then": 7,
+				"Else": 10
+			},
+			"Egg": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "Or",
+					"A": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"C": {
+						"Mutate": "DuringEggAmbush",
+						"StartingAt": 5,
+						"StoppingAfter": 15
+					},
+					"B": {
+						"Mutate": "DuringExtraction"
+					}
+				},
+				"Then": 7,
+				"Else": 10
+			},
+			"Refinery": {
+				"Mutate": "ByRefineryPhase",
+				"Default": {
+					"Mutate": "If",
+					"Condition": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"Then": 7,
+					"Else": 10
+				},
+				"Refining": 7,
+				"RefiningStalled": 7,
+				"RefiningComplete": 7,
+				"RocketLaunched": 7
+			},
+			"Salvage": {
+				"Mutate": "BySalvagePhase",
+				"Default": 10,
+				"Uplink": 7,
+				"Refuel": 7,
+				"Finished": 7
+			},
+			"PE": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "Or",
+					"A": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"B": {
+						"Mutate": "DuringExtraction"
+					},
+					"C": {
+						"Mutate": "DuringPECountdown"
+					}
+				},
+				"Then": 7,
+				"Else": 10
+			},
+			"DeepScan": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "Or",
+					"A": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"B": {
+						"Mutate": "DuringDrillevator"
+					},
+					"C": {
+						"Mutate": "DuringExtraction"
+					}
+				},
+				"Then": 7,
+				"Else": 10
+			},
+			"Escort": {
+				"Mutate": "ByEscortPhase",
+				"Default": {
+					"Mutate": "If",
+					"Condition": {
+						"Mutate": "Or",
+						"A": {
+							"Mutate": "DuringGenericSwarm"
+						},
+						"B": {
+							"Mutate": "DuringExtraction"
+						}
+					},
+					"Then": 7,
+					"Else": 10
+				},
+				"WaitingForFuel": 7,
+				"FinalEventA": 7,
+				"FinalEventB": 7,
+				"FinalEventC": 7,
+				"FinalEventD": 7
+			},
+			"Elimination": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "DuringExtraction"
+				},
+				"Then": 7,
+				"Else": 10
+			},
+			"Sabotage": {
+				"Mutate": "BySaboPhase",
+				"Default": {
+					"Mutate": "If",
+					"Condition": {
+						"Mutate": "DuringGenericSwarm"
+					},
+					"Then": 7,
+					"Else": 10
+				},
+				"Hacking": 7
+			}
+		},
+		"EnemyNormalWaveDifficulty": {
+			"Mutate": "Divide",
+			"A": {
+				"Mutate": "Add",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 750,
+							"B": 850
+						},
+						"B": 2
+					},
+					"B": 1
+				},
+				"B": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 0,
+							"B": 0
+						},
+						"B": 2
+					},
+					"B": 0
+				},
+				"C": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 0,
+							"B": 0
+						},
+						"B": 2
+					},
+					"B": 0
+				}
+			},
+			"B": {
+				"Mutate": "Add",
+				"A": 1,
+				"B": 0,
+				"C": 0
+			}
+		},
+		"EnemyNormalWaveInterval": {
+			"Mutate": "Divide",
+			"A": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Add",
+					"A": {
+						"Mutate": "Multiply",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Add",
+								"A": 160,
+								"B": 200
+							},
+							"B": 2
+						},
+						"B": 2
+					},
+					"B": {
+						"Mutate": "Multiply",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Add",
+								"A": 180,
+								"B": 190
+							},
+							"B": 2
+						},
+						"B": 1
+					},
+					"C": {
+						"Mutate": "Multiply",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Add",
+								"A": 0,
+								"B": 0
+							},
+							"B": 2
+						},
+						"B": 0
+					}
+				},
+				"B": {
+					"Mutate": "Add",
+					"A": 2,
+					"B": 1,
+					"C": 0
+				}
+			},
+			"B": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "And",
+					"A": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarfCount"
+						},
+						"<": 4,
+						"Then": true,
+						"Else": false
+					},
+					"B": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DrillerCount"
+						},
+						"<": 1,
+						"Then": true,
+						"Else": false
+					},
+					"C": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "GunnerCount"
+						},
+						"<": 2,
+						"Then": true,
+						"Else": false
+					}
+				},
+				"Then": {
+					"Mutate": "ByDNA",
+					"Default": 1,
+					"Mining,2,1": 0.95,
+					"Mining,3,2": 0.95,
+					"Mining,3,3": 0.9,
+					"Egg,2,2": 0.95,
+					"Egg,3,2": 0.9,
+					"Refinery,2,2": 0.95,
+					"Refinery,2,3": 0.9,
+					"Salvage,2,2": 0.95,
+					"Salvage,3,3": 0.9,
+					"DeepScan,1,2": 0.95,
+					"DeepScan,2,3": 0.9
+				},
+				"Else": 1
+			}
+		},
+		"EnemyWaveInterval": {
+			"Mutate": "Divide",
+			"A": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Add",
+					"A": {
+						"Mutate": "Multiply",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Add",
+								"A": 120,
+								"B": 150
+							},
+							"B": 2
+						},
+						"B": 1
+					},
+					"B": {
+						"Mutate": "Multiply",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Add",
+								"A": 0,
+								"B": 0
+							},
+							"B": 2
+						},
+						"B": 0
+					},
+					"C": {
+						"Mutate": "Multiply",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Add",
+								"A": 0,
+								"B": 0
+							},
+							"B": 2
+						},
+						"B": 0
+					}
+				},
+				"B": {
+					"Mutate": "Add",
+					"A": 1,
+					"B": 0,
+					"C": 0
+				}
+			},
+			"B": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "And",
+					"A": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarfCount"
+						},
+						"<": 4,
+						"Then": true,
+						"Else": false
+					},
+					"B": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DrillerCount"
+						},
+						"<": 1,
+						"Then": true,
+						"Else": false
+					},
+					"C": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "GunnerCount"
+						},
+						"<": 2,
+						"Then": true,
+						"Else": false
+					}
+				},
+				"Then": {
+					"Mutate": "ByDNA",
+					"Default": 1,
+					"Mining,2,1": 0.95,
+					"Mining,3,2": 0.95,
+					"Mining,3,3": 0.9,
+					"Egg,2,2": 0.95,
+					"Egg,3,2": 0.9,
+					"Refinery,2,2": 0.95,
+					"Refinery,2,3": 0.9,
+					"Salvage,2,2": 0.95,
+					"Salvage,3,3": 0.9,
+					"DeepScan,1,2": 0.95,
+					"DeepScan,2,3": 0.9
+				},
+				"Else": 1
+			}
+		},
+		"EnvironmentalDamageModifier": {
+			"Mutate": "Multiply",
+			"A": 1.8,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.7,
+					0.8,
+					0.9,
+					1
+				]
+			},
+			"C": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "And",
+					"A": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarfCount"
+						},
+						"<": 4,
+						"Then": true,
+						"Else": false
+					},
+					"B": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "GunnerCount"
+						},
+						"<": 1,
+						"Then": true,
+						"Else": false
+					}
+				},
+				"Then": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarvesAmmo"
+					},
+					"<": 0.5,
+					"Then": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarvesAmmo"
+						},
+						"<": 0.25,
+						"Then": {
+							"Mutate": "ByDNA",
+							"Default": 0.9,
+							"x,2,x": 0.8,
+							"x,3,x": 0.7
+						},
+						"Else": {
+							"Mutate": "ByDNA",
+							"Default": 0.95,
+							"x,2,x": 0.9,
+							"x,3,x": 0.85
+						}
+					},
+					"Else": 1
+				},
+				"Else": 1
+			}
+		},
+		"ExtraLargeEnemyDamageResistance": {
+			"Mutate": "Multiply",
+			"A": 2.9,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.55,
+					0.7,
+					0.85,
+					1
+				]
+			}
+		},
+		"ExtraLargeEnemyDamageResistanceB": {
+			"Mutate": "Multiply",
+			"A": 2.9,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.55,
+					0.7,
+					0.85,
+					1
+				]
+			}
+		},
+		"ExtraLargeEnemyDamageResistanceC": {
+			"Mutate": "Multiply",
+			"A": 2.9,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.55,
+					0.7,
+					0.85,
+					1
+				]
+			}
+		},
+		"ExtraLargeEnemyDamageResistanceD": {
+			"Mutate": "Multiply",
+			"A": {
+				"Mutate": "Multiply",
+				"A": 2.25,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			},
+			"B": 0.7
+		},
+		"FriendlyFireModifier": {
+			"Mutate": "Multiply",
+			"A": 1,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.7,
+					0.8,
+					0.9,
+					1
+				]
+			},
+			"C": {
+				"Mutate": "If",
+				"Condition": {
+					"Mutate": "And",
+					"A": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarfCount"
+						},
+						"<": 4,
+						"Then": true,
+						"Else": false
+					},
+					"B": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "GunnerCount"
+						},
+						"<": 1,
+						"Then": true,
+						"Else": false
+					}
+				},
+				"Then": {
+					"Mutate": "IfFloat",
+					"Value": {
+						"Mutate": "DwarvesAmmo"
+					},
+					"<": 0.5,
+					"Then": {
+						"Mutate": "IfFloat",
+						"Value": {
+							"Mutate": "DwarvesAmmo"
+						},
+						"<": 0.25,
+						"Then": {
+							"Mutate": "ByDNA",
+							"Default": 0.9,
+							"x,2,x": 0.8,
+							"x,3,x": 0.7
+						},
+						"Else": {
+							"Mutate": "ByDNA",
+							"Default": 0.95,
+							"x,2,x": 0.9,
+							"x,3,x": 0.85
+						}
+					},
+					"Else": 1
+				},
+				"Else": 1
+			}
+		},
+		"HealthRegenerationMax": 0.4,
+		"PointExtractionScalar": 1,
+		"ProjectileSpeedModifier": 2.3,
+		"ReviveHealthRatio": 0.4,
+		"SpeedModifier": 1.45,
+		"StationaryDifficulty": {
+			"Mutate": "Divide",
+			"A": {
+				"Mutate": "Add",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 600,
+							"B": 750
+						},
+						"B": 2
+					},
+					"B": 1
+				},
+				"B": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 0,
+							"B": 0
+						},
+						"B": 2
+					},
+					"B": 0
+				},
+				"C": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Add",
+							"A": 0,
+							"B": 0
+						},
+						"B": 2
+					},
+					"B": 0
+				}
+			},
+			"B": {
+				"Mutate": "Add",
+				"A": 1,
+				"B": 0,
+				"C": 0
+			}
+		},
+		"StationaryEnemyDiversity": 6,
+		"VeteranLarge": {
+			"Mutate": "If",
+			"Condition": {
+				"Mutate": "DuringDefend"
+			},
+			"Then": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "EnemyCount",
+					"ED": "ED_Spider_ShieldTank"
+				},
+				">=": 1,
+				"Then": 0,
+				"Else": {
+					"Mutate": "Multiply",
+					"A": 0.25,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				}
+			},
+			"Else": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "EnemyCount",
+					"ED": "ED_Spider_ShieldTank"
+				},
+				">=": {
+					"Mutate": "Round",
+					"Value": {
+						"Mutate": "Multiply",
+						"A": 3,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"Then": 0,
+				"Else": {
+					"Mutate": "Multiply",
+					"A": 0.25,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				}
+			}
+		},
+		"VeteranNormal": {
+			"Mutate": "Multiply",
+			"A": 0.85,
+			"B": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					0.7,
+					0.8,
+					0.9,
+					1
+				]
+			}
+		}
+	},
+	"Dwarves": {
+		"RegenHealthPerSecond": {
+			"Mutate": "Divide",
+			"A": {
+				"Mutate": "Multiply",
+				"A": 145,
+				"B": 0.4
+			},
+			"B": {
+				"Mutate": "Subtract",
+				"A": {
+					"Mutate": "Add",
+					"A": 10,
+					"B": {
+						"Mutate": "Divide",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 145,
+							"B": 0.1
+						},
+						"B": 2
+					}
+				},
+				"B": 4.5
+			}
+		},
+		"RegenDelayAfterDamage": 4.5,
+		"Test": true
+	},
+	"EnemiesNoSync": {
+		"ED_BarrageInfector": {
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"SpawnAmountModifier": 1,
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Divide",
+						"A": 4,
+						"B": 3
+					},
+					"B": {
+						"Mutate": "Divide",
+						"A": 1200,
+						"B": 800
+					}
+				}
+			}
+		},
+		"ED_Bomber": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 800,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 2,
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"Rarity": 8,
+			"Resistances": {
+				"FireDamageMultiplier": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Subtract",
+								"A": {
+									"Mutate": "Divide",
+									"A": 2.25,
+									"B": 2
+								},
+								"B": 1
+							},
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 300,
+									"B": 1.2
+								},
+								"B": {
+									"Mutate": "Add",
+									"A": {
+										"Mutate": "Multiply",
+										"A": 300,
+										"B": 1.2
+									},
+									"B": 100
+								}
+							}
+						},
+						"B": 1
+					},
+					"B": 1.2
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 800,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Bomber_Rockpox_Plague": {
+			"DifficultyRating": 95,
+			"MaxSpawnCount": 2,
+			"MinSpawnCount": 1,
+			"Rarity": 8,
+			"Resistances": {
+				"DamageMultiplier": 0.4
+			},
+			"SpawnAmountModifier": 0.5
+		},
+		"ED_CaveLeech": {
+			"CaveLeech": {},
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"SpawnAmountModifier": 1.5
+		},
+		"ED_Crawler": {
+			"DifficultyRating": 150
+		},
+		"ED_FacilityTurret_Barrier": {
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"SpawnAmountModifier": 0.5,
+			"Temperature": {
+				"FozenDamageBonusScale": 3,
+				"FreezeTemperature": -70
+			}
+		},
+		"ED_FacilityTurret_Burst": {
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"SpawnAmountModifier": 0.5,
+			"Temperature": {
+				"FozenDamageBonusScale": 3,
+				"FreezeTemperature": -70
+			}
+		},
+		"ED_FacilityTurret_Sniper": {
+			"SpawnAmountModifier": 0.5,
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"Temperature": {
+				"FozenDamageBonusScale": 3,
+				"FreezeTemperature": -25
+			}
+		},
+		"ED_Grabber": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 500,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 2,
+			"Rarity": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 15,
+					"B": 0.7
+				},
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 500,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Jelly_Swarmer": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 5,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"Rarity": {
+				"Mutate": "Divide",
+				"A": 4,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 5,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 6
+				},
+				"C": 0.25
+			}
+		},
+		"ED_JellyBreeder": {
+			"JellyBreeder": {
+				"CloseToSpawnEggTime": 3,
+				"EggBurstSize": 3,
+				"MaxJellies": 12,
+				"SpawnAmount": 2,
+				"TimeBetweenBursts": 20,
+				"TimeBetweenEggs": 3
+			},
+			"MaxSpawnCount": 9999,
+			"Resistances": {
+				"DamageMultiplier": 3
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Divide",
+				"A": 0.75,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			}
+		},
+		"ED_JellyBreeder_RockpoxPlague": {
+			"DifficultyRating": 145,
+			"JellyBreeder": {
+				"CloseToSpawnEggTime": 3,
+				"EggBurstSize": 3,
+				"MaxJellies": 12,
+				"SpawnAmount": 2,
+				"TimeBetweenBursts": 20,
+				"TimeBetweenEggs": 3
+			},
+			"MaxSpawnCount": 9999,
+			"Rarity": 8,
+			"Resistances": {
+				"DamageMultiplier": 1
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Divide",
+				"A": 0.75,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			}
+		},
+		"ED_Mactera_Shooter_Normal": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 223,
+							"B": {
+								"Mutate": "Subtract",
+								"A": 1,
+								"B": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								}
+							}
+						},
+						"B": {
+							"Mutate": "Multiply",
+							"A": 600,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						},
+						"C": {
+							"Mutate": "Multiply",
+							"A": 350,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						}
+					},
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 223,
+							"B": {
+								"Mutate": "Subtract",
+								"A": 1,
+								"B": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								}
+							}
+						},
+						"B": {
+							"Mutate": "Multiply",
+							"A": 600,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						},
+						"C": {
+							"Mutate": "Multiply",
+							"A": 350,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						}
+					},
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 50
+				},
+				"C": 1
+			}
+		},
+		"ED_Mactera_TripleShooter": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 350,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 350,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 50
+				},
+				"C": 1
+			}
+		},
+		"ED_PatrolBot": {
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 900,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 900,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 75
+				},
+				"C": 1
+			},
+			"Temperature": {
+				"FozenDamageBonusScale": 3,
+				"FreezeTemperature": -74,
+				"UnfreezeTemperature": -42
+			}
+		},
+		"ED_PatrolBot_Caretaker": {
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"Temperature": {
+				"FozenDamageBonusScale": 3,
+				"FreezeTemperature": -74,
+				"UnfreezeTemperature": -42
+			}
+		},
+		"ED_PlagueLarva": {
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1
+		},
+		"ED_Prospector": {
+			"Resistances": {
+				"DamageMultiplier": 30
+			},
+			"TimeDilation": 0.01
+		},
+		"ED_Shark": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 300,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 2,
+			"Rarity": 8,
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 300,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 75
+				},
+				"C": 1
+			}
+		},
+		"ED_ShootingPlant": {
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Divide",
+					"A": 4,
+					"B": 3
+				}
+			},
+			"SpawnAmountModifier": 1
+		},
+		"ED_Shredder": {
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 35,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MinSpawnCount": 1,
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 35,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 12
+				},
+				"C": 1
+			},
+			"Temperature": {
+				"FreezeTemperature": -30
+			}
+		},
+		"ED_Spider_Boss_Heavy": {
+			"Resistances": {
+				"ElectricDamageMultiplier": 0.7,
+				"ColdDamageMultiplier": 1
+			}
+		},
+		"ED_Spider_Boss_TwinA": {
+			"Resistances": {
+				"ElectricDamageMultiplier": 0.8,
+				"ColdDamageMultiplier": 1
+			}
+		},
+		"ED_Spider_Boss_TwinB": {
+			"Resistances": {
+				"ElectricDamageMultiplier": 0.8,
+				"ColdDamageMultiplier": 1
+			}
+		},
+		"ED_Spider_Buffer": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 800,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 2,
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"Rarity": 8,
+			"Resistances": {
+				"FireDamageMultiplier": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Subtract",
+								"A": {
+									"Mutate": "Divide",
+									"A": 2.25,
+									"B": 2
+								},
+								"B": 1
+							},
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 300,
+									"B": 1
+								},
+								"B": {
+									"Mutate": "Add",
+									"A": {
+										"Mutate": "Multiply",
+										"A": 300,
+										"B": 1
+									},
+									"B": 100
+								}
+							}
+						},
+						"B": 1
+					},
+					"B": 1
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 800,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Exploder": {
+			"AttackDamageMultiplier": {
+				"Mutate": "Multiply",
+				"A": 3.4,
+				"B": 5.1
+			},
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 20,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 20,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 25
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Exploder_Rockpox_Plague": {
+			"DifficultyRating": 25,
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"Rarity": 1,
+			"Resistances": {
+				"DamageMultiplier": 0.4
+			},
+			"SpawnAmountModifier": 0.5
+		},
+		"ED_Spider_ExploderTank": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 4000,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 0,
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"Rarity": {
+				"Mutate": "Divide",
+				"A": 15,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						1,
+						1,
+						1,
+						1
+					]
+				}
+			},
+			"Resistances": {
+				"FireDamageMultiplier": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Subtract",
+								"A": {
+									"Mutate": "Divide",
+									"A": 2.25,
+									"B": 2
+								},
+								"B": 1
+							},
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 300,
+									"B": 1
+								},
+								"B": {
+									"Mutate": "Add",
+									"A": {
+										"Mutate": "Multiply",
+										"A": 300,
+										"B": 1
+									},
+									"B": 100
+								}
+							}
+						},
+						"B": 1
+					},
+					"B": 1
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 4000,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_ExploderTankGhost": {
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 1.45,
+					"B": 1.15
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 1.45,
+					"B": 1.15
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 1.45,
+					"B": 1.15
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 1.45,
+					"B": 1.15
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 1.45,
+					"B": 1.15
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 1.45,
+					"B": 1.15
+				}
+			}
+		},
+		"ED_Spider_Grunt": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 90,
+							"B": {
+								"Mutate": "Subtract",
+								"A": 1,
+								"B": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								}
+							}
+						},
+						"B": {
+							"Mutate": "Multiply",
+							"A": 148,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						},
+						"C": {
+							"Mutate": "Multiply",
+							"A": 270,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						}
+					},
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"Rarity": 2,
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 90,
+							"B": {
+								"Mutate": "Subtract",
+								"A": 1,
+								"B": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								}
+							}
+						},
+						"B": {
+							"Mutate": "Multiply",
+							"A": 148,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						},
+						"C": {
+							"Mutate": "Multiply",
+							"A": 270,
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 0.85,
+									"B": {
+										"Mutate": "ByPlayerCount",
+										"Values": [
+											0.7,
+											0.8,
+											0.9,
+											1
+										]
+									}
+								},
+								"B": 2
+							}
+						}
+					},
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 15
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Grunt_Guard": {
+			"Resistances": {
+				"ColdDamageMultiplier": 1,
+				"ExplosionDamageMultiplier": 0.75,
+				"PoisonDamageMultiplier": 0.75
+			}
+		},
+		"ED_Spider_Grunt_Rock": {
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Divide",
+					"A": 90,
+					"B": 38.5
+				}
+			}
+		},
+		"ED_Spider_Grunt_Rock_Warning": {
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Divide",
+					"A": 90,
+					"B": 38.5
+				}
+			}
+		},
+		"ED_Spider_Grunt_RockpoxPlague": {
+			"DifficultyRating": 15,
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"Rarity": 2,
+			"Resistances": {
+				"DamageMultiplier": 0.3
+			},
+			"SpawnAmountModifier": 1
+		},
+		"ED_Spider_Lobber": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 270,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					2,
+					2,
+					3,
+					4
+				]
+			},
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 270,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 55
+				},
+				"C": 1
+			},
+			"SpawnSpread": 300
+		},
+		"ED_Spider_RapidShooter": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 700,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 1,
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"Rarity": 10,
+			"Resistances": {
+				"FireDamageMultiplier": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Divide",
+							"A": {
+								"Mutate": "Subtract",
+								"A": {
+									"Mutate": "Divide",
+									"A": 2.25,
+									"B": 2
+								},
+								"B": 1
+							},
+							"B": {
+								"Mutate": "Divide",
+								"A": {
+									"Mutate": "Multiply",
+									"A": 300,
+									"B": 1.2
+								},
+								"B": {
+									"Mutate": "Add",
+									"A": {
+										"Mutate": "Multiply",
+										"A": 300,
+										"B": 1.2
+									},
+									"B": 100
+								}
+							}
+						},
+						"B": 1
+					},
+					"B": 1.2
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 700,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_ShieldTank": {
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"Resistances": {
+				"ColdDamageMultiplier": 1,
+				"CorrosiveDamageMultiplier": 0.75,
+				"ElectricDamageMultiplier": 1,
+				"ExplosionDamageMultiplier": 0.5,
+				"FireDamageMultiplier": 0.5
+			},
+			"Temperature": {
+				"WarmingRate": 99
+			}
+		},
+		"ED_Spider_Shooter": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 120,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 120,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 55
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Shooter_Rockpox_Plague": {
+			"DifficultyRating": 55,
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"Rarity": 4,
+			"Resistances": {
+				"DamageMultiplier": 0.3
+			},
+			"SpawnAmountModifier": 0.5
+		},
+		"ED_Spider_Spawn_Clone": {
+			"Base": "ED_Spider_Spawn"
+		},
+		"ED_Spider_Spitter": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 39.9,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 39.9,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 25
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Stalker": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 360,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 1,
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Multiply",
+					"A": 1,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				},
+				"MaxAcceleration": {
+					"Mutate": "Multiply",
+					"A": 1,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Multiply",
+					"A": 1,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Multiply",
+					"A": 1,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Multiply",
+					"A": 1,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				},
+				"StrafeSpeed": {
+					"Mutate": "Multiply",
+					"A": 1,
+					"B": {
+						"Mutate": "ByPlayerCount",
+						"Values": [
+							0.7,
+							0.8,
+							0.9,
+							1
+						]
+					}
+				}
+			},
+			"Rarity": 5,
+			"Resistances": {
+				"DamageMultiplier": 1.2,
+				"ElectricDamageMultiplier": 1
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 360,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Stinger": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 400,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 1,
+			"Rarity": {
+				"Mutate": "Divide",
+				"A": 4,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			},
+			"Resistances": {
+				"PiercingDamageMultiplier": 1
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 400,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Swarmer": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 12,
+					"B": 1.2
+				},
+				"B": 10
+			},
+			"MinSpawnCount": 1,
+			"Rarity": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 27,
+					"B": 7
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 7,
+					"B": {
+						"Mutate": "ByBiome",
+						"Default": 4,
+						"DenseBiozone": 3,
+						"GlacialStrata": 3
+					}
+				}
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 12,
+					"B": 1.2
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 6
+				},
+				"C": 1
+			}
+		},
+		"ED_Spider_Swarmer_Pheromone_NOFX": {
+			"Spawner": {
+				"ED": "ED_Spider_Swarmer_Pheromone_NOFX_Clone",
+				"Interval": 9999,
+				"IntervalSpawnCount": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0,
+						0,
+						1,
+						2
+					]
+				},
+				"MaxSpawns": 1,
+				"OnSpawnDelay": 10
+			}
+		},
+		"ED_Spider_Swarmer_Pheromone_NOFX_Clone": {
+			"Base": "ED_Spider_Swarmer_Pheromone_NOFX"
+		},
+		"ED_Spider_Tank": {
+			"CanBeUsedForConstantPressure": true,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 750,
+							"B": {
+								"Mutate": "Subtract",
+								"A": 1,
+								"B": {
+									"Mutate": "If",
+									"Condition": {
+										"Mutate": "DuringDefend"
+									},
+									"Then": {
+										"Mutate": "IfFloat",
+										"Value": {
+											"Mutate": "EnemyCount",
+											"ED": "ED_Spider_ShieldTank"
+										},
+										">=": 1,
+										"Then": 0,
+										"Else": {
+											"Mutate": "Multiply",
+											"A": 0.25,
+											"B": {
+												"Mutate": "ByPlayerCount",
+												"Values": [
+													0.7,
+													0.8,
+													0.9,
+													1
+												]
+											}
+										}
+									},
+									"Else": {
+										"Mutate": "IfFloat",
+										"Value": {
+											"Mutate": "EnemyCount",
+											"ED": "ED_Spider_ShieldTank"
+										},
+										">=": {
+											"Mutate": "Round",
+											"Value": {
+												"Mutate": "Multiply",
+												"A": 3,
+												"B": {
+													"Mutate": "ByPlayerCount",
+													"Values": [
+														0.7,
+														0.8,
+														0.9,
+														1
+													]
+												}
+											}
+										},
+										"Then": 0,
+										"Else": {
+											"Mutate": "Multiply",
+											"A": 0.25,
+											"B": {
+												"Mutate": "ByPlayerCount",
+												"Values": [
+													0.7,
+													0.8,
+													0.9,
+													1
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"B": {
+							"Mutate": "Multiply",
+							"A": 900,
+							"B": {
+								"Mutate": "If",
+								"Condition": {
+									"Mutate": "DuringDefend"
+								},
+								"Then": {
+									"Mutate": "IfFloat",
+									"Value": {
+										"Mutate": "EnemyCount",
+										"ED": "ED_Spider_ShieldTank"
+									},
+									">=": 1,
+									"Then": 0,
+									"Else": {
+										"Mutate": "Multiply",
+										"A": 0.25,
+										"B": {
+											"Mutate": "ByPlayerCount",
+											"Values": [
+												0.7,
+												0.8,
+												0.9,
+												1
+											]
+										}
+									}
+								},
+								"Else": {
+									"Mutate": "IfFloat",
+									"Value": {
+										"Mutate": "EnemyCount",
+										"ED": "ED_Spider_ShieldTank"
+									},
+									">=": {
+										"Mutate": "Round",
+										"Value": {
+											"Mutate": "Multiply",
+											"A": 3,
+											"B": {
+												"Mutate": "ByPlayerCount",
+												"Values": [
+													0.7,
+													0.8,
+													0.9,
+													1
+												]
+											}
+										}
+									},
+									"Then": 0,
+									"Else": {
+										"Mutate": "Multiply",
+										"A": 0.25,
+										"B": {
+											"Mutate": "ByPlayerCount",
+											"Values": [
+												0.7,
+												0.8,
+												0.9,
+												1
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 1,
+			"MinSpawnCount": 1,
+			"Rarity": 1,
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": {
+						"Mutate": "Add",
+						"A": {
+							"Mutate": "Multiply",
+							"A": 750,
+							"B": {
+								"Mutate": "Subtract",
+								"A": 1,
+								"B": {
+									"Mutate": "If",
+									"Condition": {
+										"Mutate": "DuringDefend"
+									},
+									"Then": {
+										"Mutate": "IfFloat",
+										"Value": {
+											"Mutate": "EnemyCount",
+											"ED": "ED_Spider_ShieldTank"
+										},
+										">=": 1,
+										"Then": 0,
+										"Else": {
+											"Mutate": "Multiply",
+											"A": 0.25,
+											"B": {
+												"Mutate": "ByPlayerCount",
+												"Values": [
+													0.7,
+													0.8,
+													0.9,
+													1
+												]
+											}
+										}
+									},
+									"Else": {
+										"Mutate": "IfFloat",
+										"Value": {
+											"Mutate": "EnemyCount",
+											"ED": "ED_Spider_ShieldTank"
+										},
+										">=": {
+											"Mutate": "Round",
+											"Value": {
+												"Mutate": "Multiply",
+												"A": 3,
+												"B": {
+													"Mutate": "ByPlayerCount",
+													"Values": [
+														0.7,
+														0.8,
+														0.9,
+														1
+													]
+												}
+											}
+										},
+										"Then": 0,
+										"Else": {
+											"Mutate": "Multiply",
+											"A": 0.25,
+											"B": {
+												"Mutate": "ByPlayerCount",
+												"Values": [
+													0.7,
+													0.8,
+													0.9,
+													1
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"B": {
+							"Mutate": "Multiply",
+							"A": 900,
+							"B": {
+								"Mutate": "If",
+								"Condition": {
+									"Mutate": "DuringDefend"
+								},
+								"Then": {
+									"Mutate": "IfFloat",
+									"Value": {
+										"Mutate": "EnemyCount",
+										"ED": "ED_Spider_ShieldTank"
+									},
+									">=": 1,
+									"Then": 0,
+									"Else": {
+										"Mutate": "Multiply",
+										"A": 0.25,
+										"B": {
+											"Mutate": "ByPlayerCount",
+											"Values": [
+												0.7,
+												0.8,
+												0.9,
+												1
+											]
+										}
+									}
+								},
+								"Else": {
+									"Mutate": "IfFloat",
+									"Value": {
+										"Mutate": "EnemyCount",
+										"ED": "ED_Spider_ShieldTank"
+									},
+									">=": {
+										"Mutate": "Round",
+										"Value": {
+											"Mutate": "Multiply",
+											"A": 3,
+											"B": {
+												"Mutate": "ByPlayerCount",
+												"Values": [
+													0.7,
+													0.8,
+													0.9,
+													1
+												]
+											}
+										}
+									},
+									"Then": 0,
+									"Else": {
+										"Mutate": "Multiply",
+										"A": 0.25,
+										"B": {
+											"Mutate": "ByPlayerCount",
+											"Values": [
+												0.7,
+												0.8,
+												0.9,
+												1
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 1
+			},
+			"SpawnSpread": 300
+		},
+		"ED_Spider_Tank_Boss": {
+			"Resistances": {
+				"ColdDamageMultiplier": 1,
+				"ElectricDamageMultiplier": 0.7
+			}
+		},
+		"ED_Spider_Tank_HeavySpawn": {
+			"Movement": {
+				"AlignDirectionSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxAcceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxBrakingDeceleration": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxPawnSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"MaxStrafeDistance": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				},
+				"StrafeSpeed": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Divide",
+					"A": 2.25,
+					"B": 2
+				}
+			},
+			"SpawnSpread": 500
+		},
+		"ED_Spider_Tank_Rock": {
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Divide",
+					"A": 300,
+					"B": 120
+				}
+			}
+		},
+		"ED_Spider_Tank_Rock_Warning": {
+			"Resistances": {
+				"DamageMultiplier": {
+					"Mutate": "Divide",
+					"A": 300,
+					"B": 120
+				}
+			}
+		},
+		"ED_Spider_Tank_RockpoxPlague": {
+			"DifficultyRating": 10,
+			"MaxSpawnCount": 1,
+			"MinSpawnCount": 1,
+			"Rarity": 1,
+			"Resistances": {
+				"DamageMultiplier": 0.4
+			},
+			"SpawnAmountModifier": 0.1,
+			"SpawnSpread": 300
+		},
+		"ED_SpiderSpawner": {
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"Resistances": {
+				"DamageMultiplier": 3
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Divide",
+				"A": 2,
+				"B": 3
+			}
+		},
+		"ED_TentaclePlant": {
+			"MaxSpawnCount": 9999,
+			"MinSpawnCount": 1,
+			"SpawnAmountModifier": {
+				"Mutate": "Divide",
+				"A": 0.1375,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.55,
+						0.7,
+						0.85,
+						1
+					]
+				}
+			},
+			"SpawnSpread": 0,
+			"TimeDilation": 0.4
+		},
+		"ED_Terminator": {
+			"Resistances": {
+				"CorrosiveDamageMultiplier": 3
+			},
+			"Temperature": {
+				"FozenDamageBonusScale": 3,
+				"FreezeTemperature": -30,
+				"WarmingRate": 0
+			}
+		},
+		"ED_Woodlouse": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 450,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 1,
+			"Rarity": {
+				"Mutate": "Divide",
+				"A": 8,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			},
+			"Resistances": {
+				"ColdDamageMultiplier": 1,
+				"ElectricDamageMultiplier": 0.7,
+				"PhysicalDamageMultiplier": 1.5
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 450,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 0.5,
+					"B": 95
+				},
+				"C": 0.5
+			}
+		},
+		"ED_Woodlouse_Youngling": {
+			"CanBeUsedForConstantPressure": false,
+			"CanBeUsedInEncounters": true,
+			"DifficultyRating": {
+				"Mutate": "Divide",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 100,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": 10
+			},
+			"MaxSpawnCount": 4,
+			"MinSpawnCount": 1,
+			"Rarity": {
+				"Mutate": "Divide",
+				"A": 5,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.7,
+						0.8,
+						0.9,
+						1
+					]
+				}
+			},
+			"Resistances": {
+				"ColdDamageMultiplier": 1,
+				"ElectricDamageMultiplier": 0.7,
+				"PhysicalDamageMultiplier": 1.2
+			},
+			"SpawnAmountModifier": {
+				"Mutate": "Multiply",
+				"A": {
+					"Mutate": "Multiply",
+					"A": 100,
+					"B": {
+						"Mutate": "Multiply",
+						"A": 2.25,
+						"B": {
+							"Mutate": "ByPlayerCount",
+							"Values": [
+								0.7,
+								0.8,
+								0.9,
+								1
+							]
+						}
+					}
+				},
+				"B": {
+					"Mutate": "Divide",
+					"A": 1,
+					"B": 50
+				},
+				"C": 1
+			}
+		}
+	},
+	"EscortMule": {
+		"BigHitDamageModifier": {
+			"Mutate": "Add",
+			"A": {
+				"Mutate": "Multiply",
+				"A": 0.85,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.4,
+						0.6,
+						0.8,
+						1
+					]
+				}
+			},
+			"B": 1,
+			"C": {
+				"Mutate": "Multiply",
+				"A": -1,
+				"B": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0.4,
+						0.6,
+						0.8,
+						1
+					]
+				}
+			}
+		},
+		"BigHitDamageReductionThreshold": 0,
+		"FriendlyFireModifier": 0.1,
+		"NeutralDamageModifier": 0.1
+	},
+	"Pools": {
+		"DisruptiveEnemies": {
+			"Remove": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "DwarfCount"
+				},
+				"<": 3,
+				"Then": [
+					"ED_Spider_Stalker"
+				],
+				"Else": []
+			}
+		},
+		"DisruptiveEnemyPoolCount": {
+			"Min": 8,
+			"Max": 8
+		},
+		"EnemyPool": {
+			"Remove": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "DwarfCount"
+				},
+				"<": 3,
+				"Then": {
+					"Mutate": "If",
+					"Condition": {
+						"Mutate": "DuringDefend"
+					},
+					"Then": [
+						"ED_Spider_ExploderTank",
+						"ED_Spider_Stalker"
+					],
+					"Else": {
+						"Mutate": "If",
+						"Condition": {
+							"Mutate": "DuringDrillevator"
+						},
+						"Then": [
+							"ED_Spider_ExploderTank",
+							"ED_Spider_Stalker",
+							"ED_Woodlouse"
+						],
+						"Else": [
+							"ED_Spider_Stalker"
+						]
+					}
+				},
+				"Else": []
+			}
+		},
+		"MinPoolSize": 18,
+		"StationaryEnemyCount": {
+			"Min": 6,
+			"Max": 6
+		},
+		"StationaryPool": {
+			"Remove": {
+				"Mutate": "ByMissionType",
+				"Default": [],
+				"Escort": [
+					"ED_TentaclePlant"
+				]
+			}
+		}
+	},
+	"Resupply": {
+		"Cost": {
+			"Mutate": "ByDNA",
+			"Default": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						20,
+						30,
+						40,
+						40
+					]
+				},
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Mining,2,1": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": 0,
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Egg,3,2": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": 0,
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Refinery,2,2": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0,
+						10,
+						20,
+						20
+					]
+				},
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Refinery,2,3": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": 0,
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Salvage,2,2": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0,
+						10,
+						20,
+						20
+					]
+				},
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Salvage,3,3": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": 0,
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"DeepScan,1,2": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						0,
+						10,
+						20,
+						20
+					]
+				},
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"DeepScan,2,3": {
+				"Mutate": "IfFloat",
+				"Value": {
+					"Mutate": "ResuppliesCalled"
+				},
+				"==": 0,
+				"Then": 0,
+				"Else": {
+					"Mutate": "ByPlayerCount",
+					"Values": [
+						40,
+						50,
+						60,
+						60
+					]
+				}
+			},
+			"Sabotage": {
+				"Mutate": "ByPlayerCount",
+				"Values": [
+					40,
+					50,
+					60,
+					60
+				]
+			}
+		}
+	},
+	"SpecialEncounters": [
+		{
+			"Enemy": "ED_HydraWeed",
+			"BaseChance": 0,
+			"CanSpawnInDeepDive": false
+		},
+		{
+			"Enemy": "ED_InfectedMule",
+			"BaseChance": 0,
+			"CanSpawnInDeepDive": false
+		},
+		{
+			"Enemy": "ED_Prospector",
+			"BaseChance": 0,
+			"CanSpawnInDeepDive": false
+		},
+		{
+			"Enemy": "ED_Spider_ExploderTank_King",
+			"BaseChance": 0,
+			"CanSpawnInDeepDive": false
+		},
+		{
+			"Enemy": "ED_TentaclePlant",
+			"BaseChance": {
+				"Mutate": "ByMissionType",
+				"Default": 0,
+				"Escort": 1
+			},
+			"CanSpawnInDeepDive": true
+		},
+		{
+			"Enemy": "ED_Terminator",
+			"BaseChance": 0,
+			"CanSpawnInDeepDive": false
+		},
+		{
+			"Enemy": "ED_WalkingPlagueheart",
+			"BaseChance": 0,
+			"CanSpawnInDeepDive": false
+		}
+	],
+	"Warnings": {
+		"Banned": [
+			"MMUT_BloodSugar",
+			"MMUT_ExterminationContract",
+			"MMUT_LowGravity",
+			"MMUT_OxygenRich",
+			"MMUT_Weakspot",
+			"WRN_BulletHell",
+			"WRN_LethalEnemies",
+			"WRN_MacteraCave",
+			"WRN_NoOxygen",
+			"WRN_NoShields",
+			"WRN_RegenerativeEnemies",
+			"WRN_RivalIncursion"
+		]
+	}
+}
