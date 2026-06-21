@@ -99,7 +99,7 @@
       "Resistances": {
         "DamageMultiplier": {
           "Mutate": "Divide",
-          "A": 1,
+          "A": 1.2,
           "B": 2.25
         }
       }
@@ -124,7 +124,7 @@
       "Resistances": {
         "DamageMultiplier": {
           "Mutate": "Divide",
-          "A": 1,
+          "A": 1.2,
           "B": 2.25
         }
       }
@@ -154,7 +154,7 @@
       "Resistances": {
         "DamageMultiplier": {
           "Mutate": "Divide",
-          "A": 1,
+          "A": 1.2,
           "B": 2.25
         }
       }
@@ -173,7 +173,7 @@
       "Resistances": {
         "DamageMultiplier": {
           "Mutate": "Divide",
-          "A": 1,
+          "A": 1.2,
           "B": 2.25
         }
       }
@@ -182,7 +182,7 @@
       "Resistances": {
         "DamageMultiplier": {
           "Mutate": "Divide",
-          "A": 1,
+          "A": 1.2,
           "B": 2.25
         }
       }
