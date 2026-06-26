@@ -1,0 +1,333 @@
+{
+  "Name": "Haz 9x2 SSCPGE | Scout Stationary Clear Practice Non-SP Scout Edition | B04",
+  "Description": "
+	Update:
+
+		Buff EnvironmentalDamageModifier to 2.
+		Buff HealthRegenerationMax to 0.25.
+		Buff MaxActiveSwarmers to 90.
+		Buff ProjectileSpeedModifier to 2.5.
+		Buff ReviveHealthRatio to 0.25.
+		Nerf 2nd~ Resupply Cost to 40.
+
+	=======================================================================================
+
+	Designed specifically for ground Scout solo stationary-clearing practice.
+
+	Base Settings:
+
+		4-player scaling.
+		Based on self-made 9x2:
+			EncounterDifficulty: 950.
+			EnemyWaveInterval: 120
+			EscortMule-BigHitDamageModifier: 0.85.
+			HealthRegenerationMax: 0.25.
+			MinPoolSize: 18.
+			ProjectileSpeedModifier: 2.5.
+			Resupply Cost: 1st free; 2nd~ 40.
+			ReviveHealthRatio: 0.25.
+			StationaryEnemyDiversity: 7.
+			StationaryEnemycount: 7.
+			And more......
+
+	Adjustments:
+
+		Adjust non-stationary enemy spawn.
+		EnemyDiversity: 8.
+		MaxActiveSwarmers: 90.
+		Nerf Bulk resistance.
+		Nerf Stalker resistance.
+		Nerf non-stationary enemy spawn count.
+		Nerf non-stationary large enemy resistance.
+
+	Rules:
+
+		Bosco is recommended.
+		Goal is clearing out high-threat stationaries; don't have to finish the mission.
+		It is highly encouraged to actively kite the mobile enemies while simultaneously taking out the stationaries, rather than camping in a safe spot to clear the wave first and then safely shooting the stationaries. That being said, feel free to adjust your playstyle based on your current skill level.
+		You can use Sandbox Utilities to resup yourself if you don't want to deal with Nitra RNG.
+		You can teleport straight into the main cave and start clearing.
+	
+	Recommended Mods:
+
+		Custom Mission: To select the exact mission type you want to practice on.
+		Enemy Count: To monitor your clear progress and gauge the room's difficulty.
+		Sandbox Utilities: To teleport through dirt and resup yourself.
+	",
+  "Caps": {
+    "MaxActiveEnemies": 270,
+    "MaxActiveSwarmers": 90
+  },
+  "Resupply": {
+    "Cost": {
+      "Mutate": "IfFloat",
+      "Value": {
+        "Mutate": "ResuppliesCalled"
+      },
+      "==": 0,
+      "Then": 0,
+      "Else": 40
+    }
+  },
+  "DifficultySetting": {
+    "AttackCooldownModifier": 2.5,
+    "BaseHazard": "Hazard 5",
+    "EncounterDifficulty": 950,
+    "EnemyCountModifier": 0.375,
+    "EnemyDamageModifier": 5.6,
+    "EnemyDamageResistance": 1.2,
+    "EnemyDiversity": 8,
+    "EnemyNormalWaveDifficulty": 900,
+    "EnemyNormalWaveInterval": 160,
+    "EnemyWaveInterval": 120,
+    "EnvironmentalDamageModifier": 2,
+    "ExtraLargeEnemyDamageResistance": 0.75,
+    "ExtraLargeEnemyDamageResistanceB": 0.7,
+    "ExtraLargeEnemyDamageResistanceC": 0.6,
+    "ExtraLargeEnemyDamageResistanceD": 0.75,
+    "FriendlyFireModifier": 0.9,
+    "HealthRegenerationMax": 0.25,
+    "PointExtractionScalar": 1,
+    "ProjectileSpeedModifier": 2.5,
+    "ReviveHealthRatio": 0.25,
+    "SpeedModifier": 1.55,
+    "StationaryDifficulty": {
+      "Mutate": "Divide",
+      "A": {
+        "Mutate": "Multiply",
+        "A": 825,
+        "B": 3.9
+      },
+      "B": 0.375
+    },
+    "StationaryEnemyDiversity": 7,
+    "VeteranLarge": 0.275,
+    "VeteranNormal": 0.95
+  },
+  "Pools": {
+    "MinPoolSize": 18,
+    "DisruptiveEnemyPoolCount": {
+      "Min": 8,
+      "Max": 8
+    },
+    "StationaryEnemycount": {
+      "min": 7,
+      "max": 7
+    }
+  },
+  "SpecialEncounters": [],
+  "EnemiesNoSync": {
+    "ED_BarrageInfector": {
+      "Resistances": {
+        "DamageMultiplier": {
+          "Mutate": "Divide",
+          "A": 1.2,
+          "B": 2.5
+        }
+      }
+    },
+    "ED_Bomber": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      }
+    },
+    "ED_Grabber": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      }
+    },
+    "ED_JellyBreeder": {
+      "Resistances": {
+        "DamageMultiplier": {
+          "Mutate": "Divide",
+          "A": 1.2,
+          "B": 2.5
+        }
+      }
+    },
+    "ED_Jelly_Swarmer": {
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_Mactera_Shooter_Normal": {
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      },
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_Mactera_TripleShooter": {
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      }
+    },
+    "ED_Ossiran_Scrab": {
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_PitJaw": {
+      "Resistances": {
+        "DamageMultiplier": {
+          "Mutate": "Divide",
+          "A": 1.2,
+          "B": 2.5
+        }
+      }
+    },
+    "ED_Prospector": {
+      "Base": "ED_Jelly_Swarmer",
+      "CanBeUsedForConstantPressure": false,
+      "CanBeUsedInEncounters": false,
+      "DifficultyRating": 1,
+      "IdealSpawnSize": 0,
+      "MaxSpawnCount": 0,
+      "MinSpawnCount": 0,
+      "Rarity": 99
+    },
+    "ED_ShootingPlant": {
+      "Resistances": {
+        "DamageMultiplier": {
+          "Mutate": "Divide",
+          "A": 1.2,
+          "B": 2.5
+        }
+      }
+    },
+    "ED_SpiderSpawner": {
+      "Resistances": {
+        "DamageMultiplier": {
+          "Mutate": "Divide",
+          "A": 1.2,
+          "B": 2.5
+        }
+      }
+    },
+    "ED_Spider_Buffer": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      }
+    },
+    "ED_Spider_Exploder": {
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      }
+    },
+    "ED_Spider_ExploderTank": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      },
+      "Resistances": {
+        "DamageMultiplier": 2
+      },
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_Spider_Grunt": {},
+    "ED_Spider_Lobber": {
+      "DifficultyRating": 50,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      }
+    },
+    "ED_Spider_RapidShooter": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      }
+    },
+    "ED_Spider_Shooter": {
+      "DifficultyRating": 50,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      }
+    },
+    "ED_Spider_Spitter": {
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      }
+    },
+    "ED_Spider_Stalker": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      },
+      "Resistances": {
+        "DamageMultiplier": 2
+      }
+    },
+    "ED_Spider_Stinger": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      },
+      "Resistances": {
+        "DamageMultiplier": 1
+      }
+    },
+    "ED_Spider_Swarmer": {
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 140,
+        "B": 49
+      },
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_Spider_Tank": {
+      "SpawnAmountModifier": 0.1
+    },
+    "ED_WalkingPlagueheart": {
+      "Base": "ED_Jelly_Swarmer",
+      "CanBeUsedForConstantPressure": false,
+      "CanBeUsedInEncounters": false,
+      "DifficultyRating": 1,
+      "IdealSpawnSize": 0,
+      "MaxSpawnCount": 0,
+      "MinSpawnCount": 0,
+      "Rarity": 99
+    },
+    "ED_Woodlouse": {
+      "DifficultyRating": 75,
+      "Rarity": {
+        "Mutate": "Divide",
+        "A": 960,
+        "B": 127
+      },
+      "SpawnAmountModifier": 0.5
+    },
+    "ED_Woodlouse_Youngling": {
+      "SpawnAmountModifier": 0.5
+    }
+  },
+  "EscortMule": {
+    "FriendlyFireModifier": 0.1,
+    "BigHitDamageModifier": 0.85,
+    "BigHitDamageReductionThreshold": 0,
+    "NeutralDamageModifier": 0.1
+  }
+}
